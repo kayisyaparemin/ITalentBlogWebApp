@@ -1,4 +1,4 @@
-namespace ITalentITalentBlogWebApp.Models
+namespace ITalentBlogWebApp.Models
 {
     public class ErrorViewModel
     {

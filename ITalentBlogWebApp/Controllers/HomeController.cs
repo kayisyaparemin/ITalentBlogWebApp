@@ -1,4 +1,5 @@
-﻿using ITalentITalentBlogWebApp.Models;
+﻿using ITalentBlogWebApp.Models;
+using ITalentBlogWebApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 namespace ITalentITalentBlogWebApp.Controllers
@@ -6,15 +7,18 @@ namespace ITalentITalentBlogWebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IPostRepository _postRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IPostRepository postRepository)
         {
             _logger = logger;
+            _postRepository = postRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var posts = _postRepository.GetPosts();
+            return View(posts);
         }
 
         public IActionResult Privacy()

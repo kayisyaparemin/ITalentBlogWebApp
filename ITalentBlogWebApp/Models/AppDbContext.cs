@@ -10,6 +10,6 @@ namespace ITalentBlogWebApp.Models
 
         }
 
-        public DbSet<Picture> Pictures { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

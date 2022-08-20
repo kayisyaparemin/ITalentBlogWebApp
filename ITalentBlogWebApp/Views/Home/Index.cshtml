@@ -1,8 +1,25 @@
-﻿@{
+﻿@using ITalentBlogWebApp.Models
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model List<Post>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>PostImage</th>
+            <th>PostTitle</th>
+            <th>PostDescription</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model){
+            <tr>
+                <td><img src="~/pictures/@item.ImageName"/></td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>

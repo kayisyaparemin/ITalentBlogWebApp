@@ -1,4 +1,5 @@
 ﻿using ITalentBlogWebApp.Models;
+using System.Linq.Expressions;
 
 namespace ITalentBlogWebApp.Repositories
 {
@@ -10,22 +11,35 @@ namespace ITalentBlogWebApp.Repositories
         {
             _context = context;
         }
-        public void AddPicture(Picture picture)
+
+        public void CreatePost(Post post)
         {
-            _context.Pictures.Add(picture);
+            _context.Posts.Add(post);
             _context.SaveChanges();
         }
 
-        public void DeletePicture(int id)
+        public void DeletePost(int id)
         {
-            var picture = _context.Pictures.Find(id);
-            _context.Pictures.Remove(picture);
+            var removePost = _context.Posts.Find(id);
+            _context.Posts.Remove(removePost);
             _context.SaveChanges();
         }
 
-        public List<Picture> GetPictures()
+        public Post GetById(int id)
         {
-            return _context.Pictures.ToList();
+            return _context.Posts.Find(id);
         }
+
+        public List<Post> GetPosts()
+        {
+            return _context.Posts.ToList();
+        }
+
+        public void UpdatePost(Post post)
+        {
+            _context.Update(post);
+            _context.SaveChanges();
+        }
+
     }
 }

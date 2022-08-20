@@ -9,7 +9,7 @@ namespace ITalentBlogWebApp.Mappers
     {
         public MapperProfile()
         {
-            CreateMap<PictureViewModel, Picture>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.picture.FileName)).ReverseMap();
+            CreateMap<PostCreateViewModel, Post>().ReverseMap();
         }
     }
 }
