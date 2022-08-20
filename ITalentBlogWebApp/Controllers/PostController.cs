@@ -2,6 +2,7 @@
 using ITalentBlogWebApp.Models;
 using ITalentBlogWebApp.Models.ViewModels;
 using ITalentBlogWebApp.Repositories;
+using ITalentITalentBlogWebApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
 
@@ -36,7 +37,8 @@ namespace ITalentBlogWebApp.Controllers
             var Post = _mapper.Map<Post>(request);
             Post.ImageName = fileName + Path.GetExtension(request.Image.FileName);
             _postRepository.CreatePost(Post);
-            return View();
+
+            return RedirectToAction(nameof(HomeController.Index));
         }
 
         public async void SaveImage(IFormFile image,string fileName)
