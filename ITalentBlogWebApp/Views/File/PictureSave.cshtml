@@ -1,0 +1,17 @@
+﻿@using ITalentBlogWebApp.Models.ViewModels
+
+@{
+    ViewData["Title"] = "PictureSave";
+}
+
+<h1>PictureSave</h1>
+
+@model PictureViewModel
+
+<form asp-controller="File" asp-action="PictureSave" method="post" enctype="multipart/form-data">
+
+    <input type="file" asp-for="picture" />
+
+    <input type="submit" value="Kaydet" />
+
+</form>

@@ -1,8 +1,7 @@
-﻿using ITalentBlogWebApp.Models;
+﻿using ITalentITalentBlogWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
-namespace ITalentBlogWebApp.Controllers
+namespace ITalentITalentBlogWebApp.Controllers
 {
     public class HomeController : Controller
     {
