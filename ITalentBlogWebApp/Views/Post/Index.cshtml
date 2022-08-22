@@ -42,12 +42,19 @@
 </div>
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center mt-4">
-        <li class="page-item @(ViewBag.page == 1 ? "disabled" : "")"><a class="page-link " asp-controller="Post" asp-action="Index" asp-route-page="@(ViewBag.page-1)">Previous</a></li>
+
+        <li class="page-item @(ViewBag.page == 1 ? "disabled" : "")">
+            <a class="page-link " asp-controller="Post" asp-action="Index" asp-route-page="@(ViewBag.page-1)">Previous</a>
+        </li>
+
         @for (int page = 1; page <= ViewBag.totalPage; page++)
         {
             <li class="page-item"><a class="page-link" asp-controller="Post" asp-action="Index" asp-route-page="@(page)">@(page)</a></li>
         }
-        <li class="page-item @(ViewBag.page == ViewBag.totalPage ? "disabled" : "")"><a class="page-link " asp-controller="Post" asp-action="Index" asp-route-page="@(ViewBag.page+1)">Next</a></li>
+
+        <li class="page-item @(ViewBag.page == ViewBag.totalPage ? "disabled" : "")">
+            <a class="page-link " asp-controller="Post" asp-action="Index" asp-route-page="@(ViewBag.page+1)">Next</a>
+        </li>
     </ul>
 </nav>
 
