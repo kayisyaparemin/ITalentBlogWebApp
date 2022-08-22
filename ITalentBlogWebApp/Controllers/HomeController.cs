@@ -29,6 +29,17 @@ namespace ITalentITalentBlogWebApp.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult ContactMe(ContactViewModel request)
+        {
+            SendEmail(_mapper.Map<Contact>(request));
+            return View();
+        }
+
+        private void SendEmail(Contact contact)
+        {
+            //some sending email codes...
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

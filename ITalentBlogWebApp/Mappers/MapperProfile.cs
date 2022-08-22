@@ -12,6 +12,7 @@ namespace ITalentBlogWebApp.Mappers
             CreateMap<PostCreateViewModel, Post>().ReverseMap();
             CreateMap<PostViewModel,Post>().ReverseMap();
             CreateMap<PostUpdateViewModel, Post>().ReverseMap();
+            CreateMap<ContactViewModel, Contact>().ReverseMap();    
         }
     }
 }

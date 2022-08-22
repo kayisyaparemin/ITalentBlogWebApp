@@ -119,6 +119,7 @@ namespace ITalentBlogWebApp.Controllers
             _postRepository.UpdatePost(updatedPost);
             return RedirectToAction("Index");
         }
+
         
     }
 }

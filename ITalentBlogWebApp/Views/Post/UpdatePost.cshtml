@@ -26,8 +26,9 @@
             <textarea class="form-control" asp-for="Description"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
+        <label asp-for="Image"><h6>Post Image</h6></label>
         <div class="mb-3">
-            <label for="formFile" class="form-label">Post Image</label>
+            <img src="/pictures/@Model.ImageName" style="width:150px;height:150px;" class="mb-3"/>
             <input class="form-control" type="file" asp-for="Image">
             <span asp-validation-for="Image" class="text-danger"></span>
 

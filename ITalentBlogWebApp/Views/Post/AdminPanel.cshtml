@@ -22,7 +22,7 @@
         {
             <tr>
                 <td>
-                    <div class="mb-3"><a asp-action="DeletePost" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></div>
+                    <div class="mb-3"><a asp-action="DeletePost" asp-route-id="@item.Id" class="btn btn-danger btnDelete">Delete</a></div>
                     <div><a asp-action="UpdatePost" asp-route-id="@item.Id" class="btn btn-warning">Update</a></div>
                 </td>
                 <td>@item.Id</td>
@@ -34,4 +34,5 @@
         }
     </tbody>
 </table>
+
             
