@@ -1,4 +1,7 @@
-﻿using ITalentBlogWebApp.Models;
+﻿using AutoMapper;
+using ITalentBlogWebApp.Controllers;
+using ITalentBlogWebApp.Models;
+using ITalentBlogWebApp.Models.ViewModels;
 using ITalentBlogWebApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,20 +11,21 @@ namespace ITalentITalentBlogWebApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IPostRepository _postRepository;
+        private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger,IPostRepository postRepository)
+        public HomeController(ILogger<HomeController> logger,IPostRepository postRepository,IMapper mapper)
         {
             _logger = logger;
             _postRepository = postRepository;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            var posts = _postRepository.GetPosts();
-            return View(posts);
+            return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult ContactMe()
         {
             return View();
         }
@@ -30,6 +34,11 @@ namespace ITalentITalentBlogWebApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult About()
+        {
+            return View();
         }
     }
 }

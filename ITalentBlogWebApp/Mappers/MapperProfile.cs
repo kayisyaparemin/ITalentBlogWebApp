@@ -10,6 +10,8 @@ namespace ITalentBlogWebApp.Mappers
         public MapperProfile()
         {
             CreateMap<PostCreateViewModel, Post>().ReverseMap();
+            CreateMap<PostViewModel,Post>().ReverseMap();
+            CreateMap<PostUpdateViewModel, Post>().ReverseMap();
         }
     }
 }

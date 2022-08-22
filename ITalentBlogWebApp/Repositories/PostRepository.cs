@@ -1,4 +1,5 @@
 ﻿using ITalentBlogWebApp.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace ITalentBlogWebApp.Repositories
@@ -25,9 +26,19 @@ namespace ITalentBlogWebApp.Repositories
             _context.SaveChanges();
         }
 
+        public bool ExistsTitle(string Title)
+        {
+            return _context.Posts.Any(x=>x.Title == Title);    
+        }
+
         public Post GetById(int id)
         {
             return _context.Posts.Find(id);
+        }
+
+        public List<Category> GetCategories()
+        {
+            return _context.Categories.ToList();
         }
 
         public List<Post> GetPosts()
@@ -39,6 +50,18 @@ namespace ITalentBlogWebApp.Repositories
         {
             _context.Update(post);
             _context.SaveChanges();
+        }
+        public List<Post> PostsWithCategory()
+        {
+            return _context.Posts.Include(x => x.Category).ToList();
+        }
+        public (List<Post>,int) GetPostsWithPaged(int page,int pageSize)
+        {
+            var posts = PostsWithCategory();
+            int totalCount = posts.Count;
+            var ListedPosts = posts.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
+            return(ListedPosts,totalCount);
+
         }
 
     }

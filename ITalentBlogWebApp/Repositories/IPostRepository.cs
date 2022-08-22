@@ -15,6 +15,11 @@ namespace ITalentBlogWebApp.Repositories
 
         public void DeletePost(int id);
 
+        public bool ExistsTitle(string Title);
 
+        public List<Category> GetCategories();
+
+        public List<Post> PostsWithCategory();
+        public (List<Post>, int) GetPostsWithPaged(int page, int pageSize);
     }
 }

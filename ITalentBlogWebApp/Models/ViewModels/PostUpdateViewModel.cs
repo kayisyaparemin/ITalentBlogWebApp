@@ -1,32 +1,28 @@
-﻿using ITalentBlogWebApp.Repositories;
+﻿
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Policy;
-using System.Web.Mvc;
-using RemoteAttribute = Microsoft.AspNetCore.Mvc.RemoteAttribute;
 
 namespace ITalentBlogWebApp.Models.ViewModels
 {
-    
-    public class PostCreateViewModel
+    public class PostUpdateViewModel
     {
-        public PostCreateViewModel()
+        public PostUpdateViewModel()
         {
             CreatedDate = DateTime.Now.ToShortDateString() + "-" + DateTime.Now.ToShortTimeString();
         }
-        [Remote(action: "AnyPostTitle", controller: "post")]
+        public int Id { get; set; }
         public string Title { get; set; }
 
-        [Required,MinLength(100)]
+        [Required, MinLength(100)]
         public string Description { get; set; }
-        [Required]
+        [NotMapped]
         public IFormFile Image { get; set; }
+
+        public string ImageName { get; set; }
 
         public int CategoryId { get; set; }
 
         public string CreatedDate { get; }
-
     }
 }

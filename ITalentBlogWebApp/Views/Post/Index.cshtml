@@ -1,36 +1,65 @@
-﻿@using ITalentBlogWebApp.Models.ViewModels
+﻿@using ITalentBlogWebApp.Models
+@using ITalentBlogWebApp.Models.ViewModels
 
-@{
-    ViewData["Title"] = "Index";
-}
-@model PostCreateViewModel
-<form asp-controller="Post" asp-action="Index" enctype="multipart/form-data">
-    <fieldset>
-        <legend>Create Post</legend>
-        <div class="mb-3">
-            <label class="form-label">Post Title</label>
-            <input type="text" class="form-control" asp-for="Title">
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
-        <div class="form-outline mb-3">
-            <label class="form-label" >Post Description</label>
-            <textarea class="form-control" asp-for="Description"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Post Image</label>
-            <input class="form-control" type="file" asp-for="Image">
-            <span asp-validation-for="Image" class="text-danger"></span>
-            
-        </div>  
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </fieldset>
-</form>
-
-@section Scripts
+@model List<PostViewModel>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model)
     {
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
+        <div class="col">
+            <div class="card h-100">
+                <img src="/pictures/@item.ImageName" class="card-img-top">
+                <div class="card-body">
+                    <h4 class="card-title">@item.Title</h4>
+                    <h6 class="card-title">@item.Category.Name</h6>
+                    <p class="truncate">@item.Description</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@item.modelId">
+                        Read more...
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="@item.modelId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">@item.Title <span>/@item.Category.Name</span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="/pictures/@item.ImageName" class="card-img-top">
+                        <div>@item.Description</div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <span class="float-start">Date: @item.CreatedDate</span>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item @(ViewBag.page == 1 ? "disabled" : "")"><a class="page-link " asp-controller="Post" asp-action="Index" asp-route-page="@(ViewBag.page-1)">Previous</a></li>
+        @for (int page = 1; page <= ViewBag.totalPage; page++)
+        {
+            <li class="page-item"><a class="page-link" asp-controller="Post" asp-action="Index" asp-route-page="@(page)">@(page)</a></li>
+        }
+        <li class="page-item @(ViewBag.page == ViewBag.totalPage ? "disabled" : "")"><a class="page-link " asp-controller="Post" asp-action="Index" asp-route-page="@(ViewBag.page+1)">Next</a></li>
+    </ul>
+</nav>
+
+<style>
+
+    .truncate {
+        display: inline-block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
 
 
