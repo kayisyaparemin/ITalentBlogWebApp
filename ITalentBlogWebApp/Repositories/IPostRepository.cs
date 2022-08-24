@@ -21,5 +21,9 @@ namespace ITalentBlogWebApp.Repositories
 
         public List<Post> PostsWithCategory();
         public (List<Post>, int) GetPostsWithPaged(int page, int pageSize);
+
+        public (List<Post>, int) GetPostsWithPagedFilteredByCategory(int page, int pageSize, string categoryName);
+
+        public (List<Post>, int) GetPostsWithPagedFilteredByQuery(int page, int pageSize, string query);
     }
 }

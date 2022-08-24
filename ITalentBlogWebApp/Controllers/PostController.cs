@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 
 namespace ITalentBlogWebApp.Controllers
 {
@@ -22,15 +23,56 @@ namespace ITalentBlogWebApp.Controllers
             _fileProvider = fileProvider;
             _mapper = mapper;
         }
-        public IActionResult Index(int page=1)
+        public IActionResult Index(PostIndexViewModel request = null)
         {
-            var pageSize = 6;
-            var postList = _mapper.Map<List<PostViewModel>>(_postRepository.GetPostsWithPaged(page, pageSize).Item1);
-            var totalCount = _postRepository.GetPostsWithPaged(page, pageSize).Item2;
-            int totalPage = (int)Math.Ceiling((decimal)totalCount / pageSize);
-            ViewBag.totalPage = totalPage;
-            ViewBag.page = page;
-            return View(postList);
+            LoadCategoryNames();
+
+            var (posts, totalCount) = FilteredAndPagedPosts(new PostFilterViewModel()
+            {
+                categoryName = request.categoryName,
+                page = request.page,
+                pageSize = request.pageSize,
+                query = request.query
+            });
+
+            var postList = _mapper.Map<List<PostViewModel>>(posts);
+            int totalPage = (int)Math.Ceiling((decimal)totalCount / request.pageSize);
+ 
+            return View(new PostIndexViewModel() { Posts=postList , totalPage = totalPage,page=request.page});
+        }
+
+        private (List<Post>, int) FilteredAndPagedPosts(PostFilterViewModel request)
+        {
+            if (request.categoryName == null && request.query == null)
+            {
+                var posts = _postRepository.GetPostsWithPaged(request.page, request.pageSize).Item1;
+                var totalCount = _postRepository.GetPostsWithPaged(request.page, request.pageSize).Item2;
+
+                return (posts, totalCount);
+            }
+            if (request.categoryName != null && request.query == null)
+            {
+                var posts = _postRepository.GetPostsWithPagedFilteredByCategory(request.page, request.pageSize, request.categoryName).Item1;
+                var totalCount = _postRepository.GetPostsWithPagedFilteredByCategory(request.page, request.pageSize, request.categoryName).Item2;
+
+                return (posts, totalCount);
+            }
+
+            
+            if (request.query != null)
+            {
+                var posts = _postRepository.GetPostsWithPagedFilteredByQuery(request.page, request.pageSize, request.query).Item1;
+                var totalCount = _postRepository.GetPostsWithPagedFilteredByQuery(request.page, request.pageSize, request.query).Item2;
+                return (posts, totalCount);
+            }
+
+            return (null, 0);
+        }
+        private void LoadCategoryNames()
+        {
+            var categoryNames = new HashSet<string>();
+            _postRepository.GetCategories().ForEach(x=>categoryNames.Add(x.Name));
+            ViewBag.categoryNames = categoryNames;  
         }
 
         public async void SaveImage(IFormFile image,string fileName)
@@ -94,8 +136,9 @@ namespace ITalentBlogWebApp.Controllers
 
         public IActionResult DeletePost(int id)
         {
-            _postRepository.DeletePost(id);
-            return RedirectToAction("Index");
+           
+                _postRepository.DeletePost(id);
+                return RedirectToAction("Index");
         }
 
         public IActionResult UpdatePost(int id)

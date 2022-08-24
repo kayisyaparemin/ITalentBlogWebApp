@@ -63,6 +63,23 @@ namespace ITalentBlogWebApp.Repositories
             return(ListedPosts,totalCount);
 
         }
+        public (List<Post>, int) GetPostsWithPagedFilteredByCategory(int page, int pageSize,string categoryName)
+        {
+            var posts = PostsWithCategory().Where(x=>x.Category.Name == categoryName).ToList();
+            int totalCount = posts.Count;
+            var ListedPosts = posts.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
+            return (ListedPosts, totalCount);
+
+        }
+
+        public (List<Post>, int) GetPostsWithPagedFilteredByQuery(int page, int pageSize, string query)
+        {
+            var posts = PostsWithCategory().Where(x =>x.Description.ToLower().Contains(query.ToLower()) || x.Title.ToLower().Contains(query.ToLower())).ToList();
+            int totalCount = posts.Count;
+            var ListedPosts = posts.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
+            return (ListedPosts, totalCount);
+
+        }
 
     }
 }
