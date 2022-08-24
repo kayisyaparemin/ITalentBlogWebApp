@@ -1,4 +1,4 @@
-﻿namespace ITalentBlogWebApp.Models
+﻿namespace ITalentBlogWebApp.Models.Entities
 {
     public class Category
     {

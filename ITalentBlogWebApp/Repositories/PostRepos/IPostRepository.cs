@@ -1,7 +1,7 @@
-﻿using ITalentBlogWebApp.Models;
+﻿using ITalentBlogWebApp.Models.Entities;
 using System.Linq.Expressions;
 
-namespace ITalentBlogWebApp.Repositories
+namespace ITalentBlogWebApp.Repositories.PostRepos
 {
     public interface IPostRepository
     {

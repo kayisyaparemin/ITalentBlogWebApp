@@ -1,6 +1,7 @@
 ﻿using System.Text;
+using ITalentBlogWebApp.Models.Entities;
 
-namespace ITalentBlogWebApp.Models.ViewModels
+namespace ITalentBlogWebApp.Models.ViewModels.Posts
 {
     public class PostViewModel
     {
@@ -8,7 +9,7 @@ namespace ITalentBlogWebApp.Models.ViewModels
         {
             Random r = new Random();
 
-            modelId = GetRandomString(r, 10); 
+            modelId = GetRandomString(r, 10);
         }
         public int Id { get; set; }
         public string Title { get; set; }

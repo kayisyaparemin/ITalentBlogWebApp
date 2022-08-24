@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using ITalentBlogWebApp.Models;
-using ITalentBlogWebApp.Models.ViewModels;
-using ITalentBlogWebApp.Repositories;
+using ITalentBlogWebApp.Models.Entities;
+using ITalentBlogWebApp.Models.ViewModels.Posts;
+using ITalentBlogWebApp.Repositories.PostRepos;
 using ITalentITalentBlogWebApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -123,17 +123,6 @@ namespace ITalentBlogWebApp.Controllers
             
             return RedirectToAction("Index");
         }
-        public IActionResult UpdateDeletePost()
-        {
-            return View();
-        }
-        public IActionResult AdminPanel()
-        {
-            var postList = _mapper.Map<List<PostViewModel>>(_postRepository.PostsWithCategory());
-            return View(postList);
-
-        }
-
         public IActionResult DeletePost(int id)
         {
            

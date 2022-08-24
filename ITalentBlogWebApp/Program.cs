@@ -1,5 +1,6 @@
 using ITalentBlogWebApp.Models;
-using ITalentBlogWebApp.Repositories;
+using ITalentBlogWebApp.Repositories.CategoryRepos;
+using ITalentBlogWebApp.Repositories.PostRepos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using System.Reflection;
@@ -10,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IPostRepository, PostRepository>();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

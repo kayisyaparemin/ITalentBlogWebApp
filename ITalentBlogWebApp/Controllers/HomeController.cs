@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using ITalentBlogWebApp.Controllers;
 using ITalentBlogWebApp.Models;
-using ITalentBlogWebApp.Models.ViewModels;
-using ITalentBlogWebApp.Repositories;
+using ITalentBlogWebApp.Models.Entities;
+using ITalentBlogWebApp.Models.ViewModels.Contact;
+using ITalentBlogWebApp.Repositories.PostRepos;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 namespace ITalentITalentBlogWebApp.Controllers
@@ -36,6 +37,7 @@ namespace ITalentITalentBlogWebApp.Controllers
             return View();
         }
 
+  
         private void SendEmail(Contact contact)
         {
             //some sending email codes...

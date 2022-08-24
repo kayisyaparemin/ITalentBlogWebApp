@@ -1,9 +1,8 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ITalentBlogWebApp.Models.ViewModels
+namespace ITalentBlogWebApp.Models.ViewModels.Posts
 {
     public class PostUpdateViewModel
     {

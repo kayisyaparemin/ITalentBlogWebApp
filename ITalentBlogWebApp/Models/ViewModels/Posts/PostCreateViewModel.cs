@@ -7,9 +7,9 @@ using System.Security.Policy;
 using System.Web.Mvc;
 using RemoteAttribute = Microsoft.AspNetCore.Mvc.RemoteAttribute;
 
-namespace ITalentBlogWebApp.Models.ViewModels
+namespace ITalentBlogWebApp.Models.ViewModels.Posts
 {
-    
+
     public class PostCreateViewModel
     {
         public PostCreateViewModel()
@@ -19,7 +19,7 @@ namespace ITalentBlogWebApp.Models.ViewModels
         [Remote(action: "AnyPostTitle", controller: "post")]
         public string Title { get; set; }
 
-        [Required,MinLength(100)]
+        [Required, MinLength(100)]
         public string Description { get; set; }
         [Required]
         public IFormFile Image { get; set; }

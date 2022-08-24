@@ -1,4 +1,4 @@
-﻿namespace ITalentBlogWebApp.Models.ViewModels
+﻿namespace ITalentBlogWebApp.Models.ViewModels.Posts
 {
     public class PostFilterViewModel
     {

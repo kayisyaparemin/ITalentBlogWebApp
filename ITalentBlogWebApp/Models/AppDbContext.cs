@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ITalentBlogWebApp.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -15,6 +16,7 @@ namespace ITalentBlogWebApp.Models
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

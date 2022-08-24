@@ -21,7 +21,7 @@ namespace ITalentBlogWebApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("ITalentBlogWebApp.Models.Category", b =>
+            modelBuilder.Entity("ITalentBlogWebApp.Models.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,31 @@ namespace ITalentBlogWebApp.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("ITalentBlogWebApp.Models.Post", b =>
+            modelBuilder.Entity("ITalentBlogWebApp.Models.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Context")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("ITalentBlogWebApp.Models.Entities.Post", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,9 +91,20 @@ namespace ITalentBlogWebApp.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("ITalentBlogWebApp.Models.Post", b =>
+            modelBuilder.Entity("ITalentBlogWebApp.Models.Entities.Comment", b =>
                 {
-                    b.HasOne("ITalentBlogWebApp.Models.Category", "Category")
+                    b.HasOne("ITalentBlogWebApp.Models.Entities.Post", "Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("ITalentBlogWebApp.Models.Entities.Post", b =>
+                {
+                    b.HasOne("ITalentBlogWebApp.Models.Entities.Category", "Category")
                         .WithMany("Posts")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -78,9 +113,14 @@ namespace ITalentBlogWebApp.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("ITalentBlogWebApp.Models.Category", b =>
+            modelBuilder.Entity("ITalentBlogWebApp.Models.Entities.Category", b =>
                 {
                     b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("ITalentBlogWebApp.Models.Entities.Post", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }
