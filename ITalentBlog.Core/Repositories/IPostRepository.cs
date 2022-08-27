@@ -14,5 +14,13 @@ namespace ITalentBlog.Core.Repositories
         public Post CreatePost(Post post);
 
         public List<Post> GetPostsWithCategories();
+
+        public bool Any(int id);
+
+        public void DeletePost(int id);
+
+        public void UpdatePost(Post post);
+
+        public Post? GetById(int id);
     }
 }

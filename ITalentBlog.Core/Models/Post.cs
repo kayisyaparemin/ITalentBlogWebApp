@@ -16,7 +16,7 @@ namespace ITalentBlog.Core.Models
 
         public string ImageName { get; set; }
 
-        public string CreatedDate { get; set; } 
+        public string CreatedDate { get;} = DateTime.Now.ToString();
 
         public Category Category { get; set; }
 

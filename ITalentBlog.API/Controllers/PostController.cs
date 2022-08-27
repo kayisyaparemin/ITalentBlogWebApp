@@ -31,6 +31,30 @@ namespace ITalentBlog.API.Controllers
 
             return new ObjectResult(response) { StatusCode = response.Status };
         }
-        
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletePost(int id)
+        {
+            var response = _postService.DeletePost(id);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+
+        [HttpPut]
+        public IActionResult UpdatePost(PostUpdateDto request)
+        {
+            var response = _postService.UpdatePost(request);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetPostById(int id)
+        {
+            var response = _postService.GetPostById(id);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+
     }
 }

@@ -7,5 +7,6 @@
         public string ImageName { get; set; }
         public int CategoryId { get; set; }
         public string CreatedDate { get; set; }
+        public IFormFile Image { get; set; }
     }
 }

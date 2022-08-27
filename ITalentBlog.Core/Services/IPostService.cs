@@ -13,5 +13,10 @@ namespace ITalentBlog.Core.Services
         CustomResponse<List<PostDto>> GetPostsWithCategories();
 
         CustomResponse<PostDto> CreatePost(PostCreateDto request);
+
+        CustomResponse<string> DeletePost(int id);
+
+        CustomResponse<PostUpdateDto> UpdatePost(PostUpdateDto request);
+        CustomResponse<PostDto> GetPostById(int id);
     }
 }

@@ -7,6 +7,12 @@ namespace ITalentBlog.Web.Services
         Task<List<PostViewModel>> GetPosts();
 
 
-        Task<HttpResponseMessage> Create(PostCreateViewModel request);
+        Task<HttpResponseMessage> CreatePost(PostCreateViewModel request);
+
+        Task<bool> DeletePost(int id);
+
+        Task<PostUpdateViewModel> GetPostById(int id);
+
+        Task<bool> UpdatePost(PostUpdateViewModel request);
     }
 }

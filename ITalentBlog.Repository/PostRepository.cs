@@ -33,5 +33,28 @@ namespace ITalentBlog.Repository
         {
             return _context.Posts.Include(x=>x.Category).ToList();
         }
+
+        public bool Any(int id)
+        {
+            return _context.Posts.Any(x => x.Id == id);
+        }
+
+        public void DeletePost(int id)
+        {
+            var entity = _context.Posts.Find(id);
+            _context.Posts.Remove(entity);
+            _context.SaveChanges();
+        }
+
+        public void UpdatePost(Post post)
+        {
+            _context.Update(post);
+            _context.SaveChanges();
+        }
+
+        public Post? GetById(int id)
+        {
+            return GetPostsWithCategories().FirstOrDefault(x => x.Id == id);
+        }
     }
 }

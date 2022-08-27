@@ -32,6 +32,10 @@ namespace ITalentBlog.Core
         {
             return new CustomResponse<T>() { Errors = errors };
         }
+        public static CustomResponse<T> Fail(string error, int status)
+        {
+            return new CustomResponse<T>() { Errors = new List<string> { error }, Status = status };
+        }
 
     }
 }

@@ -17,6 +17,12 @@ builder.Services.AddHttpClient<IPostService, PostService>(options =>
     options.BaseAddress = new Uri(builder.Configuration["WebApi:BaseUrl"]);
 });
 
+builder.Services.AddHttpClient<ICategoryService, CategoryService>(options =>
+{
+    //https://localhost:7042/api/products
+    options.BaseAddress = new Uri(builder.Configuration["WebApi:BaseUrl"]);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

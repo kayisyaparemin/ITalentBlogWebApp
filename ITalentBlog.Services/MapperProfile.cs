@@ -16,6 +16,7 @@ namespace ITalentBlog.Services
             CreateMap<Post, PostDto>().ReverseMap();
             CreateMap<Post, PostCreateDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Post, PostUpdateDto>().ReverseMap();
         }
     }
 }
