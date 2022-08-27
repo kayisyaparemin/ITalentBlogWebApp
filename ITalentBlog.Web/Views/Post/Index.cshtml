@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model List<PostViewModel>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img src="/pictures/@item.ImageName" class="card-img-top">
+                <div class="card-body">
+                    <h4 class="card-title">@item.Title</h4>
+                    <h6 class="card-title">@item.Category.Name</h6>
+                    <p class="truncate">@item.Description</p>
+                    <a asp-action="PostView" asp-route-id="@item.Id" asp-route-categoryName="@item.Category.Name" class="btn btn-primary"> Read more...</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

@@ -24,9 +24,10 @@
                     <h4 class="card-title">@item.Title</h4>
                     <h6 class="card-title">@item.Category.Name</h6>
                     <p class="truncate">@item.Description</p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@item.modelId">
+                    @*<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@item.modelId">
                         Read more...
-                    </button>
+                    </button>*@
+                    <a asp-action="PostDeneme" asp-route-id="@item.Id" asp-route-categoryName="@item.Category.Name" class="btn btn-primary"> Read more...</a>
                 </div>
             </div>
         </div>

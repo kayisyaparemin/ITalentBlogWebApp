@@ -151,8 +151,13 @@ namespace ITalentBlogWebApp.Controllers
             _postRepository.UpdatePost(updatedPost);
             return RedirectToAction("Index");
         }
+        [Route("Posts/{categoryName}/{id}")]
+        public IActionResult PostDeneme(int id,string categoryName)
+        {
+            var postDeneme = _postRepository.PostsWithCategory().FirstOrDefault(x=>x.Id == id);
 
-        
+            return View(_mapper.Map<PostViewModel>(postDeneme));
+        }
     }
 }
 
