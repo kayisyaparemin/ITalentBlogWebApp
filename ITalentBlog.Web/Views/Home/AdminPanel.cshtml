@@ -1,11 +1,11 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "AdminPanel";
     Layout = "_template";
 }
 
-<h1>AdminPanel</h1>
 
+
+<h1>AdminPanel</h1>
 <section class="single-post spad">
     <div class="container">
         <div class="row d-flex justify-content-center">
@@ -18,15 +18,19 @@
                             <div>
                                 <a asp-controller="Post" asp-action="CreatePost" class="site-btn">Create Post</a>
                             </div>
+                            <hr />
                             <div class="mt-3">
                                 <a asp-controller="Post" asp-action="EditPosts" class="site-btn">Edit Posts</a>
                             </div>
+                            <hr />
                             <div class="mt-3">
                                 <a asp-controller="Category" asp-action="CreateCategory" class="site-btn">Add Category</a>
                             </div>
+                            <hr />
                             <div class="mt-3">
                                 <a asp-controller="Category" asp-action="EditCategories" class="site-btn">Edit Categories</a>
                             </div>
+                            <hr />
                         </div>
                     </div>
                 </div>
@@ -34,5 +38,6 @@
         </div>
     </div>
 </section>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

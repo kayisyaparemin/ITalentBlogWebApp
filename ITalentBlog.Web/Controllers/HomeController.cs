@@ -26,7 +26,8 @@ namespace ITalentBlog.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var posts = await _postService.GetPosts();
-            return View(posts);
+            var categories = await _categoryService.GetCategories();
+            return View(new IndexViewModel() { Posts=posts,Categories=categories});
         }
 
         public ActionResult AdminPanel()
