@@ -72,5 +72,12 @@ namespace ITalentBlog.Services
 
             return CustomResponse<CategoryUpdateDto>.Success(updatedCategoryDto, 201);
         }
+
+        public CustomResponse<bool> ExistsCategory(string Name)
+        {
+            var IsExısts = _categoryRepository.ExistsCategory(Name);
+
+            return CustomResponse<bool>.Success(IsExısts, 200);
+        }
     }
 }

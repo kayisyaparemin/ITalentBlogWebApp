@@ -18,5 +18,7 @@ namespace ITalentBlog.Core.Services
         CustomResponse<CategoryDto> GetCategoryById(int id);
 
         CustomResponse<CategoryUpdateDto> UpdateCategory(CategoryUpdateDto request);
+
+        CustomResponse<bool> ExistsCategory(string Name);
     }
 }

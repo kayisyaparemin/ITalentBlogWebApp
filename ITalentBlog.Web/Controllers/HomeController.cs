@@ -29,11 +29,9 @@ namespace ITalentBlog.Web.Controllers
             return View(posts);
         }
 
-        public async Task<IActionResult> AdminPanel()
+        public ActionResult AdminPanel()
         {
-            var posts = await _postService.GetPosts();
-            var categories = await _categoryService.GetCategories();
-            return View(new AdminPageViewModel() {Posts=posts,Categories=categories });
+            return View();
         }
 
         public IActionResult Privacy()

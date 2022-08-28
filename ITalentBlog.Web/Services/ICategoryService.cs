@@ -13,5 +13,7 @@ namespace ITalentBlog.Web.Services
         Task<CategoryUpdateViewModel> GetCategoryById(int id);
 
         Task<bool> UpdateCategory(CategoryUpdateViewModel request);
+
+        Task<bool> ExistsCategory(string Name);
     }
 }

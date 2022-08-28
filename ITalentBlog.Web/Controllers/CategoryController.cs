@@ -3,6 +3,7 @@ using ITalentBlog.Web.Models;
 using ITalentBlog.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
+using System.Xml.Linq;
 
 namespace ITalentBlog.Web.Controllers
 {
@@ -46,6 +47,20 @@ namespace ITalentBlog.Web.Controllers
         {
             var category = await _categoryService.UpdateCategory(request);
             return RedirectToAction("AdminPanel", "Home");
+        }
+        public async Task<IActionResult> AnyCategoryName(string Name)
+        {
+            var IsExısts = await _categoryService.ExistsCategory(Name);
+            if (IsExısts)
+            {
+                return Json("This category name already exists");
+            }
+            return Json(true);
+        }
+        public async Task<IActionResult> EditCategories()
+        {
+            var categories = await _categoryService.GetCategories();
+            return View(categories);
         }
     }
 }

@@ -52,5 +52,13 @@ namespace ITalentBlog.API.Controllers
 
             return new ObjectResult(response) { StatusCode = response.Status };
         }
+
+        [HttpGet("ExistsCategory/{Name}")]
+        public IActionResult ExistsCategory(string Name)
+        {
+            var response = _categoryService.ExistsCategory(Name);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
     }
 }

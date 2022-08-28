@@ -10,6 +10,7 @@
         <legend>Create Post</legend>
 
         <input type="hidden" asp-for="Id"/>
+        <input type="hidden" asp-for="ImageName"/>
         <div class="mb-3">
             <label asp-for="CategoryId" class="form-label">Categories</label>
             <select class="form-select" asp-items="@ViewBag.selectList" asp-for="CategoryId">

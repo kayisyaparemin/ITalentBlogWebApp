@@ -102,9 +102,17 @@ namespace ITalentBlog.Web.Controllers
         {
             var fileName = Guid.NewGuid().ToString();
             SaveImage(request.Image, fileName);
-            request.ImageName = $"{fileName}{Path.GetExtension(request.Image.FileName)}";
+
+            if(request.ImageName == null) { request.ImageName = $"{fileName}{Path.GetExtension(request.Image.FileName)}"; }
+            
             await _postService.UpdatePost(request);
             return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> EditPosts()
+        {
+            var posts = await _postService.GetPosts();
+            return View(posts);
         }
     }
 }

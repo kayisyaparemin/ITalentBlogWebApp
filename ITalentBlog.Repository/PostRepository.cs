@@ -44,6 +44,7 @@ namespace ITalentBlog.Repository
 
         public void UpdatePost(Post post)
         {
+            post.CreatedDate = DateTime.Now.ToString();
             _context.Update(post);
             _context.SaveChanges();
         }

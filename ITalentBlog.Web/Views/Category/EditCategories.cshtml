@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "EditCategories";
+}
+
+<h1>EditCategories</h1>
+@model List<CategoryViewModel>
+<section class="single-post spad">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="single-post__comment">
+                    <div class="single-post__leave__comment">
+                        <div class="widget__title">
+                            <h1>Edit Categories </h1>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="mb-3"><a asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></div>
+                                            <div><a asp-controller="Category" asp-action="UpdateCategory" asp-route-id="@item.Id" class="btn btn-warning">Update</a></div>
+                                        </td>
+                                        <td>@item.Name</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

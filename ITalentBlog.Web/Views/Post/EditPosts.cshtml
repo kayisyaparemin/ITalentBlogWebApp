@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "EditPosts";
+    Layout = "_template";
+}
+@model List<PostViewModel>
+<h1>Edit Posts</h1>
+<section class="single-post spad">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="mb-3"><a asp-controller="Post" asp-action="DeletePost" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></div>
+                                <div><a asp-controller="Post" asp-action="UpdatePost" asp-route-id="@item.Id" class="btn btn-warning">Update</a></div>
+                            </td>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td><img src="~/pictures/@item.ImageName" /></td>
+                            <td>@item.Description</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -19,6 +19,8 @@ namespace ITalentBlog.Core.Repositories
         public Category? GetCategoryById(int id);
         public void UpdateCategory(Category category);
 
+        public bool ExistsCategory(string Name);
+
 
     }
 }

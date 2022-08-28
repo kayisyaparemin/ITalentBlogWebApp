@@ -5,86 +5,7 @@
 }
 
 <h1>AdminPanel</h1>
-@model AdminPageViewModel
 
-
-<div class="modal fade" id="EditPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Posts</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Action</th>
-                            <th>Id</th>
-                            <th>Title</th>
-                            <th>Image</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Posts)
-                        {
-                            <tr>
-                                <td>
-                                    <div class="mb-3"><a asp-controller="Post" asp-action="DeletePost" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></div>
-                                    <div><a asp-controller="Post" asp-action="UpdatePost" asp-route-id="@item.Id" class="btn btn-warning">Update</a></div>
-                                </td>
-                                <td>@item.Id</td>
-                                <td>@item.Title</td>
-                                <td><img src="~/pictures/@item.ImageName" style="width:100px;" /></td>
-                                <td>@item.Description</td>
-
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="EditCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Posts</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Action</th>
-                            <th>Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Categories)
-                        {
-                            <tr>
-                                <td>
-                                    <div class="mb-3"><a asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></div>
-                                    <div><a asp-controller="Category" asp-action="UpdateCategory" asp-route-id="@item.Id" class="btn btn-warning">Update</a></div>
-                                </td>
-                                <td>@item.Name</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 <section class="single-post spad">
     <div class="container">
         <div class="row d-flex justify-content-center">
@@ -98,17 +19,13 @@
                                 <a asp-controller="Post" asp-action="CreatePost" class="site-btn">Create Post</a>
                             </div>
                             <div class="mt-3">
-                                <button type="button" class="site-btn" data-bs-toggle="modal" data-bs-target="#EditPostModal">
-                                    Edit Posts
-                                </button>
+                                <a asp-controller="Post" asp-action="EditPosts" class="site-btn">Edit Posts</a>
                             </div>
                             <div class="mt-3">
                                 <a asp-controller="Category" asp-action="CreateCategory" class="site-btn">Add Category</a>
                             </div>
                             <div class="mt-3">
-                                <button type="button" class="site-btn" data-bs-toggle="modal" data-bs-target="#EditCategoryModal">
-                                    Edit Categories
-                                </button>
+                                <a asp-controller="Category" asp-action="EditCategories" class="site-btn">Edit Categories</a>
                             </div>
                         </div>
                     </div>

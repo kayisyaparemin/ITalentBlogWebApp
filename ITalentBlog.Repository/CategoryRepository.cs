@@ -35,6 +35,11 @@ namespace ITalentBlog.Repository
             _context.SaveChanges();
         }
 
+        public bool ExistsCategory(string Name)
+        {
+            return _context.Categories.ToList().Any(c => c.Name == Name);
+        }
+
         public List<Category> GetCategories()
         {
             return _context.Categories.ToList();

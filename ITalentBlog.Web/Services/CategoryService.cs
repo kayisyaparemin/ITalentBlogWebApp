@@ -76,5 +76,28 @@ namespace ITalentBlog.Web.Services
             return response.IsSuccessStatusCode;
 
         }
+
+        public async Task<bool> ExistsCategory(string Name)
+        {
+
+            var response = await _client.GetAsync($"Category/ExistsCategory/{Name}");
+
+
+            var responseContent = await response.Content.ReadFromJsonAsync<Response<bool>>();
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                return responseContent.Data;
+
+
+            }
+
+            foreach (var item in responseContent.Errors)
+            {
+                _logger.LogError(item);
+            }
+            throw new Exception("İşlem gerçekleşirken bir hata meydana geldi.");
+        }
     }
 }
