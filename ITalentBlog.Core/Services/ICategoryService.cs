@@ -10,5 +10,13 @@ namespace ITalentBlog.Core.Services
     public interface ICategoryService
     {
         CustomResponse<List<CategoryDto>> GetCategories();
+
+        CustomResponse<CreateCategoryDto> CreateCategory(CreateCategoryDto request);
+
+        CustomResponse<string> DeleteCategory(int id);
+
+        CustomResponse<CategoryDto> GetCategoryById(int id);
+
+        CustomResponse<CategoryUpdateDto> UpdateCategory(CategoryUpdateDto request);
     }
 }

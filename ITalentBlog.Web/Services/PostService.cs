@@ -41,12 +41,9 @@ namespace ITalentBlog.Web.Services
         }
         public async Task<bool> DeletePost(int id)
         {
-
             var response = await _client.DeleteAsync($"Post/{id}");
 
             return response.IsSuccessStatusCode;
-           
-
         }
         public async Task<PostUpdateViewModel> GetPostById(int id)
         {

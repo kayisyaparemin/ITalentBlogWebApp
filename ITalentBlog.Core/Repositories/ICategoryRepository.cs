@@ -10,5 +10,15 @@ namespace ITalentBlog.Core.Repositories
     public interface ICategoryRepository
     {
         public List<Category> GetCategories();
+
+        public void CreateCategory(Category category);
+
+        public void DeleteCategory(int id);
+        public bool Any(int id);
+
+        public Category? GetCategoryById(int id);
+        public void UpdateCategory(Category category);
+
+
     }
 }

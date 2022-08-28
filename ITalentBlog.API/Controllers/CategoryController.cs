@@ -1,4 +1,5 @@
-﻿using ITalentBlog.Core.Services;
+﻿using ITalentBlog.Core.DTOs;
+using ITalentBlog.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,36 @@ namespace ITalentBlog.API.Controllers
         public IActionResult GetCategories()
         {
             var response = _categoryService.GetCategories();    
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+        [HttpPost]
+        public IActionResult CreateCategory(CreateCategoryDto request)
+        {
+            var response = _categoryService.CreateCategory(request);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCategory(int id)
+        {
+            var response = _categoryService.DeleteCategory(id);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetCategoryById(int id)
+        {
+            var response = _categoryService.GetCategoryById(id);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+        [HttpPut]
+        public IActionResult UpdateCategory(CategoryUpdateDto request)
+        {
+            var response = _categoryService.UpdateCategory(request);
 
             return new ObjectResult(response) { StatusCode = response.Status };
         }
