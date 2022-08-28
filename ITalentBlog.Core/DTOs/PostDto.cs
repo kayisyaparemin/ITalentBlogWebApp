@@ -16,5 +16,7 @@ namespace ITalentBlog.Core.DTOs
         public CategoryDto Category { get; set; }
 
         public string CreatedDate { get; set; }
+
+        public List<CommentDto> Comments { get; set; } = new List<CommentDto>();
     }
 }

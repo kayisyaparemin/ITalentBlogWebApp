@@ -19,7 +19,7 @@ namespace ITalentBlog.API.Controllers
         [HttpGet]
         public IActionResult GetPosts()
         {
-            var response = _postService.GetPostsWithCategories();
+            var response = _postService.GetPostsWithCategoriesAndComments();
 
             return new ObjectResult(response) { StatusCode = response.Status };
         }
@@ -52,6 +52,14 @@ namespace ITalentBlog.API.Controllers
         public IActionResult GetPostById(int id)
         {
             var response = _postService.GetPostById(id);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult AddComment(CreateCommentDto request)
+        {
+            var response = _postService.AddComment(request);
 
             return new ObjectResult(response) { StatusCode = response.Status };
         }

@@ -27,13 +27,22 @@ namespace ITalentBlog.Web.Controllers
         }
 
 
-        [Route("Posts/{categoryName}/{id}")]
-        public async Task<IActionResult> PostView(int id, string categoryName)
+        
+
+        public async Task<IActionResult> PostView(int id)
         {
             var posts = await _postService.GetPosts();
             var post = posts.FirstOrDefault(x => x.Id == id);
 
-            return View(_mapper.Map<PostViewModel>(post));
+            return View(post);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(PostViewModel request)
+        {
+            request.Comment.PostId = request.Id;
+            await _postService.AddComment(request.Comment);
+            return RedirectToAction($"PostView", new { id = request.Id });
         }
 
         public async Task<IActionResult> CreatePost()

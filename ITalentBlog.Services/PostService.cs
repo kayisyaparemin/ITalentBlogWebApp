@@ -43,18 +43,9 @@ namespace ITalentBlog.Services
             return CustomResponse<PostDto>.Success(newPostDto, 201);
         }
 
-        public CustomResponse<List<PostDto>> GetPosts()
+        public CustomResponse<List<PostDto>> GetPostsWithCategoriesAndComments()
         {
-            var posts = _postRepository.GetPosts();
-
-            var postDtoList = _mapper.Map<List<PostDto>>(posts);
-
-            return CustomResponse<List<PostDto>>.Success(postDtoList, 200);
-        }
-
-        public CustomResponse<List<PostDto>> GetPostsWithCategories()
-        {
-            var posts = _postRepository.GetPostsWithCategories();
+            var posts = _postRepository.GetPostsWithCategoriesAndComments();
 
             var postDtoList = _mapper.Map<List<PostDto>>(posts);
 
@@ -79,5 +70,17 @@ namespace ITalentBlog.Services
 
             return CustomResponse<PostDto>.Success(postDto, 200);
         }
+
+        public CustomResponse<CreateCommentDto> AddComment(CreateCommentDto request)
+        {
+            var newComment = _mapper.Map<Comment>(request);
+            _postRepository.AddComment(newComment);
+
+            var newCommentDto = _mapper.Map<CreateCommentDto>(newComment);
+
+            return CustomResponse<CreateCommentDto>.Success(newCommentDto, 201);
+        }
+
+       
     }
 }

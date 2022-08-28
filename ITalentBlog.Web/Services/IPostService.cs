@@ -14,5 +14,10 @@ namespace ITalentBlog.Web.Services
         Task<PostUpdateViewModel> GetPostById(int id);
 
         Task<bool> UpdatePost(PostUpdateViewModel request);
+
+        Task<HttpResponseMessage> AddComment(CommentCreateViewModel request);
+
+
+
     }
 }

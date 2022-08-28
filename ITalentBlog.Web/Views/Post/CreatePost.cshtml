@@ -1,40 +1,47 @@
 ﻿
 @{
     ViewData["Title"] = "CreatePost";
+    Layout = "_template";
 }
-
-<h1>CreatePost</h1>
-
 @model PostCreateViewModel
-<form asp-controller="Post" asp-action="CreatePost" method="post" enctype="multipart/form-data">
-    <fieldset>
-        <legend>Create Post</legend>
-
-        <div class="mb-3">
-            <label asp-for="CategoryId" class="form-label">Categories</label>
-            <select class="form-select" asp-items="@ViewBag.selectList" asp-for="CategoryId">
-            </select>
+<section class="single-post spad">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="single-post__comment">                 
+                    <div class="single-post__leave__comment">
+                        <div class="widget__title">
+                            <h1>Create Post</h1>
+                        </div>
+                        <form asp-controller="Post" asp-action="CreatePost" method="post" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label asp-for="CategoryId" class="form-label">Categories</label>
+                                    <select class="form-select" asp-items="@ViewBag.selectList" asp-for="CategoryId">
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Post Title</label>
+                                    <input type="text" class="form-control" asp-for="Title">
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                                <div class="form-outline mb-3">
+                                    <label class="form-label">Post Description</label>
+                                    <textarea class="form-control" asp-for="Description"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Post Image</label>
+                                    <input class="form-control" type="file" asp-for="Image">
+                                    <span asp-validation-for="Image" class="text-danger"></span>
+                                </div>
+                                <button type="submit" class="site-btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Post Title</label>
-            <input type="text" class="form-control" asp-for="Title">
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
-        <div class="form-outline mb-3">
-            <label class="form-label">Post Description</label>
-            <textarea class="form-control" asp-for="Description"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Post Image</label>
-            <input class="form-control" type="file" asp-for="Image">
-            <span asp-validation-for="Image" class="text-danger"></span>
-
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </fieldset>
-</form>
-
+    </div>
+</section>
 @section Scripts
     {
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>

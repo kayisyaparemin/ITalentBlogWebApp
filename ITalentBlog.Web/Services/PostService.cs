@@ -67,7 +67,6 @@ namespace ITalentBlog.Web.Services
             }
             throw new Exception("İşlem gerçekleşirken bir hata meydana geldi.");
         }
-
         public async Task<bool> UpdatePost(PostUpdateViewModel request)
         {
             var response = await _client.PutAsJsonAsync("Post",request);
@@ -75,7 +74,12 @@ namespace ITalentBlog.Web.Services
             return response.IsSuccessStatusCode;
 
         }
-        
+
+        public async Task<HttpResponseMessage> AddComment(CommentCreateViewModel request)
+        {
+            return await _client.PostAsJsonAsync<CommentCreateViewModel>("Post/AddComment", request);
+        }
+
 
     }
 }

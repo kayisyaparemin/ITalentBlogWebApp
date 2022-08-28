@@ -17,21 +17,17 @@ namespace ITalentBlog.Repository
         {
             _context = context;
         }
-        public List<Post> GetPosts()
-        {
-            return _context.Posts.ToList();
-        }
-
         public Post CreatePost(Post post)
         {
+            post.CreatedDate = DateTime.Now.ToString();
             _context.Posts.Add(post);
             _context.SaveChanges();
             return post;
         }
 
-        public List<Post> GetPostsWithCategories()
+        public List<Post> GetPostsWithCategoriesAndComments()
         {
-            return _context.Posts.Include(x=>x.Category).ToList();
+            return _context.Posts.Include(x=>x.Category).Include(c=>c.Comments).ToList();
         }
 
         public bool Any(int id)
@@ -54,7 +50,14 @@ namespace ITalentBlog.Repository
 
         public Post? GetById(int id)
         {
-            return GetPostsWithCategories().FirstOrDefault(x => x.Id == id);
+            return GetPostsWithCategoriesAndComments().FirstOrDefault(x => x.Id == id);
+        }
+
+        public void AddComment(Comment comment)
+        {
+            var post = _context.Posts.Find(comment.PostId);
+            post.Comments.Add(comment);
+            _context.SaveChanges();
         }
     }
 }

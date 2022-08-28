@@ -9,8 +9,8 @@ namespace ITalentBlog.Core.Services
 {
     public interface IPostService
     {
-        CustomResponse<List<PostDto>> GetPosts();
-        CustomResponse<List<PostDto>> GetPostsWithCategories();
+
+        CustomResponse<List<PostDto>> GetPostsWithCategoriesAndComments();
 
         CustomResponse<PostDto> CreatePost(PostCreateDto request);
 
@@ -18,5 +18,7 @@ namespace ITalentBlog.Core.Services
 
         CustomResponse<PostUpdateDto> UpdatePost(PostUpdateDto request);
         CustomResponse<PostDto> GetPostById(int id);
+
+        CustomResponse<CreateCommentDto> AddComment(CreateCommentDto request);
     }
 }

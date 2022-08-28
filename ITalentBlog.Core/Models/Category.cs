@@ -12,6 +12,8 @@ namespace ITalentBlog.Core.Models
 
         public string Name { get; set; }
 
+        public string CreatedDate { get; init; } = DateTime.Now.ToString();
+
         public ICollection<Post> Posts { get; set; }
     }
 }

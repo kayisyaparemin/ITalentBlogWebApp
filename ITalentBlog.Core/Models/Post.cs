@@ -8,6 +8,7 @@ namespace ITalentBlog.Core.Models
 {
     public class Post
     {
+       
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -16,12 +17,12 @@ namespace ITalentBlog.Core.Models
 
         public string ImageName { get; set; }
 
-        public string CreatedDate { get;} = DateTime.Now.ToString();
+        public string CreatedDate { get; set; }
 
         public Category Category { get; set; }
 
         public int CategoryId { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

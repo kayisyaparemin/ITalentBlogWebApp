@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,10 +6,29 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @*<link rel="stylesheet" href="~/ITalentITalentBlogWebApp.styles.css" asp-append-version="true" />*@
+    <meta charset="UTF-8">
+    <meta name="description" content="Foodeiblog Template">
+    <meta name="keywords" content="Foodeiblog, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Foodeiblog | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/style.css" type="text/css">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #ff8c00;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color:#ff8c00; color:white!important">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +55,21 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+
+            <!-- Page Preloder -->
+            <div id="preloder">
+                <div class="loader"></div>
+            </div>
+
             @RenderBody()
+            <!-- Js Plugins -->
+            <script src="/js/jquery-3.3.1.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
+            <script src="/js/jquery.slicknav.js"></script>
+            <script src="/js/owl.carousel.min.js"></script>
+            <script src="/js/main.js"></script>
+
+
         </main>
     </div>
 
@@ -52,4 +84,4 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>
+

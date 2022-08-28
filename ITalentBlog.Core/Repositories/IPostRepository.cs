@@ -9,11 +9,9 @@ namespace ITalentBlog.Core.Repositories
 {
     public interface IPostRepository
     {
-        public List<Post> GetPosts();
-
         public Post CreatePost(Post post);
 
-        public List<Post> GetPostsWithCategories();
+        public List<Post> GetPostsWithCategoriesAndComments();
 
         public bool Any(int id);
 
@@ -22,5 +20,7 @@ namespace ITalentBlog.Core.Repositories
         public void UpdatePost(Post post);
 
         public Post? GetById(int id);
+
+        public void AddComment(Comment comment);
     }
 }
