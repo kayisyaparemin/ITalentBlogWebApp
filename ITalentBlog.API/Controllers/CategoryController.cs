@@ -1,4 +1,4 @@
-﻿using ITalentBlog.Core.DTOs;
+﻿using ITalentBlog.Core.DTOs.Category;
 using ITalentBlog.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +23,7 @@ namespace ITalentBlog.API.Controllers
             return new ObjectResult(response) { StatusCode = response.Status };
         }
         [HttpPost]
-        public IActionResult CreateCategory(CreateCategoryDto request)
+        public IActionResult CreateCategory(CategoryCreateDto request)
         {
             var response = _categoryService.CreateCategory(request);
 

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ITalentBlog.Core;
-using ITalentBlog.Core.DTOs;
+using ITalentBlog.Core.DTOs.Category;
 using ITalentBlog.Core.Models;
 using ITalentBlog.Core.Repositories;
 using ITalentBlog.Core.Services;
@@ -23,14 +23,14 @@ namespace ITalentBlog.Services
             _mapper = mapper;
         }
 
-        public CustomResponse<CreateCategoryDto> CreateCategory(CreateCategoryDto request)
+        public CustomResponse<CategoryCreateDto> CreateCategory(CategoryCreateDto request)
         {
             var newCategory = _mapper.Map<Category>(request);
             _categoryRepository.CreateCategory(newCategory);
 
-            var newCategoryDto = _mapper.Map<CreateCategoryDto>(newCategory);
+            var newCategoryDto = _mapper.Map<CategoryCreateDto>(newCategory);
 
-            return CustomResponse<CreateCategoryDto>.Success(newCategoryDto, 201);
+            return CustomResponse<CategoryCreateDto>.Success(newCategoryDto, 201);
         }
 
         public CustomResponse<List<CategoryDto>> GetCategories()

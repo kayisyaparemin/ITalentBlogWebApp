@@ -1,4 +1,6 @@
-﻿using ITalentBlog.Core.Models;
+﻿using ITalentBlog.Core.DTOs;
+using ITalentBlog.Core.DTOs.Post;
+using ITalentBlog.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +24,7 @@ namespace ITalentBlog.Core.Repositories
         public Post? GetById(int id);
 
         public void AddComment(Comment comment);
+
+        public (List<Post>,int) GetPostsWithPaged(int page,int pageSize);
     }
 }

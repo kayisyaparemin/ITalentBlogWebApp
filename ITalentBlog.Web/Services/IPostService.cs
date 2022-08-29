@@ -11,11 +11,13 @@ namespace ITalentBlog.Web.Services
 
         Task<bool> DeletePost(int id);
 
-        Task<PostUpdateViewModel> GetPostById(int id);
+        Task<PostViewModel> GetPostById(int id);
 
         Task<bool> UpdatePost(PostUpdateViewModel request);
 
         Task<HttpResponseMessage> AddComment(CommentCreateViewModel request);
+
+        Task<(List<PostViewModel>, int)> GetPostsWithPaged(int page, int pageSize);
 
 
 

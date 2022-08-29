@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ITalentBlog.Core.DTOs
+namespace ITalentBlog.Core.DTOs.Category
 {
-    public class CategoryUpdateDto
+    public class CategoryDto
     {
         public int Id { get; set; }
-
         public string Name { get; set; }
-
     }
 }

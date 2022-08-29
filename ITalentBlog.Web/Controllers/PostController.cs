@@ -24,16 +24,10 @@ namespace ITalentBlog.Web.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-
-
-        
-
+        }       
         public async Task<IActionResult> PostView(int id)
         {
-            var posts = await _postService.GetPosts();
-            var post = posts.FirstOrDefault(x => x.Id == id);
-
+            var post = await _postService.GetPostById(id);
             return View(post);
         }
 
@@ -95,7 +89,8 @@ namespace ITalentBlog.Web.Controllers
             var categories = await _categoryService.GetCategories();
             ViewBag.selectList = new SelectList(categories, "Id", "Name");
             var updatedPost = await _postService.GetPostById(id);
-            return View(updatedPost);
+            
+            return View(_mapper.Map<PostUpdateViewModel>(updatedPost));
         }
         [HttpPost]
         public async Task<IActionResult> UpdatePost(PostUpdateViewModel request)

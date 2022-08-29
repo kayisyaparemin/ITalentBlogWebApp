@@ -1,4 +1,5 @@
-﻿using ITalentBlog.Core.DTOs;
+﻿using ITalentBlog.Core.DTOs.Comment;
+using ITalentBlog.Core.DTOs.Post;
 using ITalentBlog.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -63,6 +64,15 @@ namespace ITalentBlog.API.Controllers
 
             return new ObjectResult(response) { StatusCode = response.Status };
         }
+
+        [HttpGet("{pageSize}/{page}")]
+        public IActionResult GetPostsWithPaged(int page,int pageSize)
+        {
+            var response = _postService.GetPostsWithPaged(page, pageSize);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+
 
     }
 }

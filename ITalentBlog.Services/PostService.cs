@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ITalentBlog.Core;
-using ITalentBlog.Core.DTOs;
+using ITalentBlog.Core.DTOs.Comment;
+using ITalentBlog.Core.DTOs.Post;
 using ITalentBlog.Core.Models;
 using ITalentBlog.Core.Repositories;
 using ITalentBlog.Core.Services;
@@ -81,6 +82,19 @@ namespace ITalentBlog.Services
             return CustomResponse<CreateCommentDto>.Success(newCommentDto, 201);
         }
 
-       
+        public CustomResponse<PostsPagedDto> GetPostsWithPaged(int page, int pageSize)
+        {
+            var (posts,totalCount) = _postRepository.GetPostsWithPaged(page, pageSize);
+
+            var ListedPosts = _mapper.Map<List<PostDto>>(posts);
+
+            int totalPage = (int)Math.Ceiling((decimal)totalCount / pageSize);
+
+            var pagedPosts = new PostsPagedDto { ListedPosts = ListedPosts, totalPage = totalPage };
+
+            return CustomResponse<PostsPagedDto>.Success(pagedPosts, 200);
+        }
+
+
     }
 }

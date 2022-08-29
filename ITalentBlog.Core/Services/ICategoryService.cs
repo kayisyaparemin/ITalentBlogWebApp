@@ -1,4 +1,4 @@
-﻿using ITalentBlog.Core.DTOs;
+﻿using ITalentBlog.Core.DTOs.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace ITalentBlog.Core.Services
     {
         CustomResponse<List<CategoryDto>> GetCategories();
 
-        CustomResponse<CreateCategoryDto> CreateCategory(CreateCategoryDto request);
+        CustomResponse<CategoryCreateDto> CreateCategory(CategoryCreateDto request);
 
         CustomResponse<string> DeleteCategory(int id);
 

@@ -60,5 +60,13 @@ namespace ITalentBlog.Repository
             post.Comments.Add(comment);
             _context.SaveChanges();
         }
+
+        public (List<Post>, int) GetPostsWithPaged(int page, int pageSize)
+        {
+            var posts = GetPostsWithCategoriesAndComments();
+            int totalCount = posts.Count;
+            var ListedPosts = posts.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
+            return (ListedPosts, totalCount);
+        }
     }
 }

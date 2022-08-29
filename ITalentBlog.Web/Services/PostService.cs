@@ -1,4 +1,6 @@
 ﻿using ITalentBlog.Web.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Drawing.Printing;
 using System.Net.Http.Json;
 
 namespace ITalentBlog.Web.Services
@@ -45,20 +47,17 @@ namespace ITalentBlog.Web.Services
 
             return response.IsSuccessStatusCode;
         }
-        public async Task<PostUpdateViewModel> GetPostById(int id)
+        public async Task<PostViewModel> GetPostById(int id)
         {
 
             var response = await _client.GetAsync($"Post/{id}");
 
 
-            var responseContent = await response.Content.ReadFromJsonAsync<Response<PostUpdateViewModel>>();
+            var responseContent = await response.Content.ReadFromJsonAsync<Response<PostViewModel>>();
 
             if (response.IsSuccessStatusCode)
             {
-
                 return responseContent.Data;
-
-
             }
 
             foreach (var item in responseContent.Errors)
@@ -80,6 +79,25 @@ namespace ITalentBlog.Web.Services
             return await _client.PostAsJsonAsync<CommentCreateViewModel>("Post/AddComment", request);
         }
 
+        public async Task<(List<PostViewModel>,int)> GetPostsWithPaged(int page, int pageSize)
+        {
+            var response = await _client.GetAsync($"Post/{pageSize}/{page}");
 
+
+            var responseContent = await response.Content.ReadFromJsonAsync<Response<PostPagedViewModel>>();
+
+            if (response.IsSuccessStatusCode)
+            {
+                var ListedPosts = responseContent.Data.ListedPosts;
+                var totalPage = responseContent.Data.totalPage;
+                return (ListedPosts, totalPage);
+            }
+
+            foreach (var item in responseContent.Errors)
+            {
+                _logger.LogError(item);
+            }
+            throw new Exception("İşlem gerçekleşirken bir hata meydana geldi.");
+        }
     }
 }

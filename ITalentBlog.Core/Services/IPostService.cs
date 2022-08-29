@@ -1,4 +1,5 @@
-﻿using ITalentBlog.Core.DTOs;
+﻿using ITalentBlog.Core.DTOs.Comment;
+using ITalentBlog.Core.DTOs.Post;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,6 @@ namespace ITalentBlog.Core.Services
         CustomResponse<PostDto> GetPostById(int id);
 
         CustomResponse<CreateCommentDto> AddComment(CreateCommentDto request);
+        CustomResponse<PostsPagedDto> GetPostsWithPaged(int page,int pageSize);
     }
 }

@@ -4,52 +4,70 @@
     Layout = "_template";
 }
 <div class="border border-5 border-dark">
-<header class="p-3 bg-dark text-white">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap" /></svg>
-            </a>
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                @foreach (var item in Model.Categories)
-                {
-                    <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">@item.Name</a></li>
-                }                
-            </ul>
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap" /></svg>
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    @foreach (var item in Model.Categories)
+                    {
+                        <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">@item.Name</a></li>
+                    }
+                </ul>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
-<section class="hero">
-    <div class="hero__slider owl-carousel">
-        <div class="hero__item">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-                        @foreach (var item in Model.Posts)
-                        {
-                            <a asp-controller="Post" asp-action="PostView" asp-route-id="@item.Id">
-                            <div class="col">
-                                <div class="hero__inside__item hero__inside__item--wide set-bg"
-                                 data-setbg="/pictures/@item.ImageName">
-                                    <h4 class="bg-body text-center text-light">@item.Title</h4>
-                                    <div class="hero__inside__item__text">
-                                        <div class="hero__inside__item--text">
-                                            <ul class="widget bg-gradient">
-                                                <li>by <span>Admin</span></li>
-                                                <li>@item.Category.Name</li>
-                                                <li>@item.Comments.Count Comment</li>
-                                            </ul>
+    <section class="hero">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__item">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+
+                            @for (int i = 0; i < Model.Posts.Count; i++)
+                            {
+                                <a asp-controller="Post" asp-action="PostView" asp-route-id="@Model.Posts[i].Id">
+                                    <div class="col">
+                                        <div class="hero__inside__item hero__inside__item--wide set-bg"
+                                         data-setbg="/pictures/@Model.Posts[i].ImageName">
+                                            <h4 class="bg-body text-center text-light">@Model.Posts[i].Title</h4>
+                                            <div class="hero__inside__item__text">
+                                                <div class="hero__inside__item--text">
+                                                    <ul class="widget bg-gradient">
+                                                        <li>by <span>Admin</span></li>
+                                                        <li>@Model.Posts[i].Category.Name</li>
+                                                        <li>@Model.Posts[i].Comments.Count Comment</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </a>
-                        }
+                                </a>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center mt-4 mb-3">
+
+            <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+                <a class="page-link " asp-controller="Home" asp-action="Index" asp-route-page="@(Model.Page-1)">Previous</a>
+            </li>
+
+            @for (int page = 1; page <= Model.TotalPage; page++)
+            {
+                <li class="page-item"><a class="page-link" asp-controller="Home" asp-action="Index" asp-route-page="@(page)">@(page)</a></li>
+            }
+
+            <li class="page-item @(Model.Page == Model.TotalPage ? "disabled" : "")">
+                <a class="page-link " asp-controller="Home" asp-action="Index" asp-route-page="@(Model.Page+1)">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>

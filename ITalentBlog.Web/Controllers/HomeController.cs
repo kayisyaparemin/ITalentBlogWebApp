@@ -23,11 +23,12 @@ namespace ITalentBlog.Web.Controllers
             _postService = postService;
             _categoryService = categoryService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
-            var posts = await _postService.GetPosts();
+            int pageSize = 3;
+            var (posts,totalPage) = await _postService.GetPostsWithPaged(page,pageSize);
             var categories = await _categoryService.GetCategories();
-            return View(new IndexViewModel() { Posts=posts,Categories=categories});
+            return View(new IndexViewModel() { Posts=posts,TotalPage=totalPage,Page=page,Categories=categories});
         }
 
         public ActionResult AdminPanel()
