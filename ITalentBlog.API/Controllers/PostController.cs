@@ -72,7 +72,7 @@ namespace ITalentBlog.API.Controllers
 
             return new ObjectResult(response) { StatusCode = response.Status };
         }
-        [HttpGet("{categoryName/{pageSize}/{page}}")]
+        [HttpGet("{categoryName}/{pageSize}/{page}")]
         public IActionResult GetPostsWithPagedFilteredByCategory(int page, int pageSize,string categoryName)
         {
             var response = _postService.GetPostsWithPagedFilteredByCategory(page, pageSize,categoryName);

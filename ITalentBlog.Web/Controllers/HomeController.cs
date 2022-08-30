@@ -60,6 +60,7 @@ namespace ITalentBlog.Web.Controllers
         [Route("CategoryName/{categoryName}/page/{page}")]
         public async Task<IActionResult> FilterByCategory(string categoryName,int page)
         {
+            ViewBag.categoryName = categoryName;    
             int pageSize = 3;
             var (posts, totalPage) = await _postService.GetPostsWithPagedFilteredByCategory(page, pageSize,categoryName);
             var categories = await _categoryService.GetCategories();
