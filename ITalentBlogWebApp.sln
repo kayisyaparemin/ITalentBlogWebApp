@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITalentBlogWepApp", "ITalentBlogWebApp\ITalentBlogWepApp.csproj", "{B295452A-F046-4EDD-8B1B-49A3236CAD8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITalentBlog.Core", "ITalentBlog.Core\ITalentBlog.Core.csproj", "{7CEBB4F3-E614-4EEA-B8F2-8687E3731CD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITalentBlog.Core", "ITalentBlog.Core\ITalentBlog.Core.csproj", "{7CEBB4F3-E614-4EEA-B8F2-8687E3731CD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITalentBlog.Repository", "ITalentBlog.Repository\ITalentBlog.Repository.csproj", "{B957B2EB-EDCA-4CD3-B82E-2D6DC74FF8F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITalentBlog.Repository", "ITalentBlog.Repository\ITalentBlog.Repository.csproj", "{B957B2EB-EDCA-4CD3-B82E-2D6DC74FF8F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITalentBlog.Services", "ITalentBlog.Services\ITalentBlog.Services.csproj", "{838EC225-5223-4951-94DA-D38185E9632E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITalentBlog.Services", "ITalentBlog.Services\ITalentBlog.Services.csproj", "{838EC225-5223-4951-94DA-D38185E9632E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITalentBlog.Web", "ITalentBlog.Web\ITalentBlog.Web.csproj", "{B24F214B-B5D9-42D0-A8FD-D83824B608E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITalentBlog.Web", "ITalentBlog.Web\ITalentBlog.Web.csproj", "{B24F214B-B5D9-42D0-A8FD-D83824B608E9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITalentBlog.API", "ITalentBlog.API\ITalentBlog.API.csproj", "{2CC4050A-C021-44CC-B275-09D2B9D9ADD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITalentBlog.API", "ITalentBlog.API\ITalentBlog.API.csproj", "{2CC4050A-C021-44CC-B275-09D2B9D9ADD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B295452A-F046-4EDD-8B1B-49A3236CAD8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B295452A-F046-4EDD-8B1B-49A3236CAD8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B295452A-F046-4EDD-8B1B-49A3236CAD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B295452A-F046-4EDD-8B1B-49A3236CAD8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7CEBB4F3-E614-4EEA-B8F2-8687E3731CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7CEBB4F3-E614-4EEA-B8F2-8687E3731CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CEBB4F3-E614-4EEA-B8F2-8687E3731CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU

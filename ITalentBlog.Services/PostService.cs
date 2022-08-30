@@ -19,11 +19,13 @@ namespace ITalentBlog.Services
     {
         private readonly IPostRepository _postRepository;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PostService(IPostRepository postRepository,IMapper mapper)
+        public PostService(IPostRepository postRepository,IMapper mapper,IUnitOfWork unitOfWork)
         {
             _postRepository = postRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
         public CustomResponse<string> DeletePost(int id)
         {
@@ -33,6 +35,8 @@ namespace ITalentBlog.Services
 
             }
             _postRepository.DeletePost(id);
+            _unitOfWork.Commit();
+            
 
             return CustomResponse<string>.Success(String.Empty, 204);
         }
@@ -40,6 +44,7 @@ namespace ITalentBlog.Services
         {
             var newPost = _mapper.Map<Post>(request);
             _postRepository.CreatePost(newPost);
+            _unitOfWork.Commit();
 
             var newPostDto = _mapper.Map<PostDto>(newPost);
 
@@ -59,6 +64,7 @@ namespace ITalentBlog.Services
         {
             var UpdatedPost = _mapper.Map<Post>(request);
             _postRepository.UpdatePost(UpdatedPost);
+            _unitOfWork.Commit();
 
             var updatedPostDto = _mapper.Map<PostUpdateDto>(UpdatedPost);
 
@@ -78,6 +84,7 @@ namespace ITalentBlog.Services
         {
             var newComment = _mapper.Map<Comment>(request);
             _postRepository.AddComment(newComment);
+            _unitOfWork.Commit();
 
             var newCommentDto = _mapper.Map<CreateCommentDto>(newComment);
 

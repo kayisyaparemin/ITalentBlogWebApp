@@ -25,14 +25,14 @@ namespace ITalentBlog.Repository
         public void CreateCategory(Category category)
         {
             _context.Categories.Add(category);
-            _context.SaveChanges();
+
         }
 
         public void DeleteCategory(int id)
         {
             var deletedCategory = _context.Categories.Find(id);
             _context.Remove(deletedCategory);
-            _context.SaveChanges();
+
         }
 
         public bool ExistsCategory(string Name)
@@ -53,7 +53,6 @@ namespace ITalentBlog.Repository
         public void UpdateCategory(Category category)
         {
             _context.Update(category);
-            _context.SaveChanges();
         }
     }
 }

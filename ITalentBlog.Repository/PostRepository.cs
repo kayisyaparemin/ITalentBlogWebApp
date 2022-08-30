@@ -22,7 +22,6 @@ namespace ITalentBlog.Repository
         {
             post.CreatedDate = DateTime.Now.ToString();
             _context.Posts.Add(post);
-            _context.SaveChanges();
             return post;
         }
 
@@ -40,14 +39,12 @@ namespace ITalentBlog.Repository
         {
             var entity = _context.Posts.Find(id);
             _context.Posts.Remove(entity);
-            _context.SaveChanges();
         }
 
         public void UpdatePost(Post post)
         {
             post.CreatedDate = DateTime.Now.ToString();
             _context.Update(post);
-            _context.SaveChanges();
         }
 
         public Post? GetById(int id)
@@ -59,7 +56,6 @@ namespace ITalentBlog.Repository
         {
             var post = _context.Posts.Find(comment.PostId);
             post.Comments.Add(comment);
-            _context.SaveChanges();
         }
 
         public (List<Post>, int) GetPostsWithPaged(int page, int pageSize)

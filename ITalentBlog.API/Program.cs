@@ -1,3 +1,4 @@
+using ITalentBlog.Core;
 using ITalentBlog.Core.Repositories;
 using ITalentBlog.Core.Services;
 using ITalentBlog.Repository;
@@ -30,6 +31,7 @@ builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

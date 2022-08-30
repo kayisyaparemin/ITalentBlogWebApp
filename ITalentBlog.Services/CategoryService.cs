@@ -4,6 +4,7 @@ using ITalentBlog.Core.DTOs.Category;
 using ITalentBlog.Core.Models;
 using ITalentBlog.Core.Repositories;
 using ITalentBlog.Core.Services;
+using ITalentBlog.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +17,20 @@ namespace ITalentBlog.Services
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryService(ICategoryRepository categoryRepository,IMapper mapper)
+        public CategoryService(ICategoryRepository categoryRepository,IMapper mapper,IUnitOfWork unitOfWork)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public CustomResponse<CategoryCreateDto> CreateCategory(CategoryCreateDto request)
         {
             var newCategory = _mapper.Map<Category>(request);
             _categoryRepository.CreateCategory(newCategory);
+            _unitOfWork.Commit();
 
             var newCategoryDto = _mapper.Map<CategoryCreateDto>(newCategory);
 
@@ -50,6 +54,7 @@ namespace ITalentBlog.Services
 
             }
             _categoryRepository.DeleteCategory(id);
+            _unitOfWork.Commit();
 
             return CustomResponse<string>.Success(String.Empty, 204);
         }
@@ -67,6 +72,7 @@ namespace ITalentBlog.Services
         {
             var UpdatedCategory = _mapper.Map<Category>(request);
             _categoryRepository.UpdateCategory(UpdatedCategory);
+            _unitOfWork.Commit();
 
             var updatedCategoryDto = _mapper.Map<CategoryUpdateDto>(UpdatedCategory);
 
