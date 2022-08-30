@@ -19,6 +19,11 @@ namespace ITalentBlog.Web.Services
 
         Task<(List<PostViewModel>, int)> GetPostsWithPaged(int page, int pageSize);
 
+        Task<(List<PostViewModel>, int)> GetPostsWithPagedFilteredByCategory(int page, int pageSize, string categoryName);
+
+        Task<bool> ExistsTitle(string Title);
+        
+
 
 
     }

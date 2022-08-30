@@ -109,5 +109,15 @@ namespace ITalentBlog.Web.Controllers
             var posts = await _postService.GetPosts();
             return View(posts);
         }
+
+        public async Task<IActionResult> AnyPostTitle(string Title)
+        {
+            var IsExısts = await _postService.ExistsTitle(Title);
+            if (IsExısts)
+            {
+                return Json("This Title already exists");
+            }
+            return Json(true);
+        }
     }
 }

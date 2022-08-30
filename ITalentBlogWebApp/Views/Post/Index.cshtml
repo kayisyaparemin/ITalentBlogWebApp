@@ -6,7 +6,8 @@
         <a class="navbar-brand" asp-action="Index" asp-route-categoryName=@null>All</a>
         @foreach (var item in @ViewBag.categoryNames)
         {
-            <a class="navbar-brand" asp-action="Index" asp-route-categoryName="@item">@item</a>
+            TempData["CategoryName"] = @item;
+            <a class="navbar-brand" asp-action="SetCategoryFilter" asp-route-categoryName="@item">@item</a>
         }
         <form class="d-flex" asp-action="Index" method="get">
             <input class="form-control me-2" type="text" placeholder="Search" asp-for="query">

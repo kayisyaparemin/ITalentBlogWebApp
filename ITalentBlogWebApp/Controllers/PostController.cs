@@ -6,6 +6,7 @@ using ITalentITalentBlogWebApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
@@ -16,6 +17,7 @@ namespace ITalentBlogWebApp.Controllers
         private readonly IPostRepository _postRepository;
         private readonly IFileProvider _fileProvider;
         private readonly IMapper _mapper;
+        private string _categoryName;
 
         public PostController(IPostRepository postRepository,IFileProvider fileProvider,IMapper mapper)
         {
@@ -23,13 +25,33 @@ namespace ITalentBlogWebApp.Controllers
             _fileProvider = fileProvider;
             _mapper = mapper;
         }
+
+        public IActionResult SetCategoryFilter(string categoryName)
+        {
+            TempData["CategoryName"] = categoryName;
+
+            LoadCategoryNames();
+
+            var (posts, totalCount) = FilteredAndPagedPosts(new PostFilterViewModel()
+            {
+                categoryName = _categoryName,
+                page = 1,
+                pageSize = 6
+            });
+
+            var postList = _mapper.Map<List<PostViewModel>>(posts);
+            int totalPage = (int)Math.Ceiling((decimal)totalCount / 6);
+           
+
+            return RedirectToAction("Index", new PostIndexViewModel() { page = 1,totalPage=totalPage, Posts = postList, query=null});
+        }
         public IActionResult Index(PostIndexViewModel request = null)
         {
             LoadCategoryNames();
 
             var (posts, totalCount) = FilteredAndPagedPosts(new PostFilterViewModel()
             {
-                categoryName = request.categoryName,
+                categoryName = TempData["CategoryName"].ToString(),
                 page = request.page,
                 pageSize = request.pageSize,
                 query = request.query

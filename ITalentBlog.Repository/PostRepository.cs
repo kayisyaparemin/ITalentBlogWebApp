@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,7 +51,7 @@ namespace ITalentBlog.Repository
         }
 
         public Post? GetById(int id)
-        {
+        { 
             return GetPostsWithCategoriesAndComments().FirstOrDefault(x => x.Id == id);
         }
 
@@ -65,6 +66,19 @@ namespace ITalentBlog.Repository
         {
             var posts = GetPostsWithCategoriesAndComments();
             int totalCount = posts.Count;
+            var ListedPosts = posts.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
+            return (ListedPosts, totalCount);
+        }
+
+        public bool ExistsTitle(string Title)
+        {
+            return _context.Posts.Any(x => x.Title.ToLower().Trim() == Title.ToLower().Trim());
+        }
+
+        public (List<Post>, int) GetPostsWithPagedFilteredByCategory(int page, int pageSize, string categoryName)
+        {
+            IQueryable<Post> posts = _context.Posts.Include(x => x.Category).Include(c => c.Comments).Where(x => x.Category.Name == categoryName);
+            int totalCount = posts.Count();
             var ListedPosts = posts.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
             return (ListedPosts, totalCount);
         }

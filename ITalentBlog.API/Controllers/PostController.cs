@@ -72,6 +72,21 @@ namespace ITalentBlog.API.Controllers
 
             return new ObjectResult(response) { StatusCode = response.Status };
         }
+        [HttpGet("{categoryName/{pageSize}/{page}}")]
+        public IActionResult GetPostsWithPagedFilteredByCategory(int page, int pageSize,string categoryName)
+        {
+            var response = _postService.GetPostsWithPagedFilteredByCategory(page, pageSize,categoryName);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+
+        [HttpGet("ExistsTitle/{Title}")]
+        public IActionResult ExistsTitle(string Title)
+        {
+            var response = _postService.ExistsTitle(Title);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
 
 
     }

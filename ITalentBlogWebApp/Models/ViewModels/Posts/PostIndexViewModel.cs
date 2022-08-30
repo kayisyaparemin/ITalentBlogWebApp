@@ -4,7 +4,6 @@
     {
         public List<PostViewModel> Posts { get; set; }
         public string query { get; set; } = null;
-        public string categoryName { get; set; } = null;
 
         public int totalPage { get; set; }
 

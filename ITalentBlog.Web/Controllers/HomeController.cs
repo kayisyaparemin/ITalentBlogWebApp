@@ -15,6 +15,7 @@ namespace ITalentBlog.Web.Controllers
         private readonly IPostService _postService;
         private readonly ICategoryService _categoryService;
 
+
         public HomeController(ILogger<HomeController> logger,IFileProvider fileProvider, IMapper mapper, IPostService postService, ICategoryService categoryService)
         {
             _logger = logger;
@@ -55,5 +56,15 @@ namespace ITalentBlog.Web.Controllers
         {
             return View();
         }
+
+        [Route("CategoryName/{categoryName}/page/{page}")]
+        public async Task<IActionResult> FilterByCategory(string categoryName,int page)
+        {
+            int pageSize = 3;
+            var (posts, totalPage) = await _postService.GetPostsWithPagedFilteredByCategory(page, pageSize,categoryName);
+            var categories = await _categoryService.GetCategories();
+            return View(new IndexViewModel() { Posts = posts, TotalPage = totalPage, Page = page, Categories = categories });
+
+        }
+     }
     }
-}

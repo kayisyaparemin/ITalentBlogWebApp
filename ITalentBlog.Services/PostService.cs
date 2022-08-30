@@ -5,11 +5,13 @@ using ITalentBlog.Core.DTOs.Post;
 using ITalentBlog.Core.Models;
 using ITalentBlog.Core.Repositories;
 using ITalentBlog.Core.Services;
+using ITalentBlog.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ITalentBlog.Services
 {
@@ -95,6 +97,24 @@ namespace ITalentBlog.Services
             return CustomResponse<PostsPagedDto>.Success(pagedPosts, 200);
         }
 
+        public CustomResponse<bool> ExistsTitle(string Title)
+        {
+            var IsExısts = _postRepository.ExistsTitle(Title);
 
+            return CustomResponse<bool>.Success(IsExısts, 200);
+        }
+
+        public CustomResponse<PostsPagedDto> GetPostsWithPagedFilteredByCategory(int page, int pageSize, string categoryName)
+        {
+            var (posts, totalCount) = _postRepository.GetPostsWithPagedFilteredByCategory(page, pageSize,categoryName);
+
+            var ListedPosts = _mapper.Map<List<PostDto>>(posts);
+
+            int totalPage = (int)Math.Ceiling((decimal)totalCount / pageSize);
+
+            var pagedPosts = new PostsPagedDto { ListedPosts = ListedPosts, totalPage = totalPage };
+
+            return CustomResponse<PostsPagedDto>.Success(pagedPosts, 200);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Drawing.Printing;
 using System.Net.Http.Json;
+using System.Xml.Linq;
 
 namespace ITalentBlog.Web.Services
 {
@@ -91,6 +92,48 @@ namespace ITalentBlog.Web.Services
                 var ListedPosts = responseContent.Data.ListedPosts;
                 var totalPage = responseContent.Data.totalPage;
                 return (ListedPosts, totalPage);
+            }
+
+            foreach (var item in responseContent.Errors)
+            {
+                _logger.LogError(item);
+            }
+            throw new Exception("İşlem gerçekleşirken bir hata meydana geldi.");
+        }
+        public async Task<(List<PostViewModel>, int)> GetPostsWithPagedFilteredByCategory(int page, int pageSize,string categoryName)
+        {
+            var response = await _client.GetAsync($"Post/{categoryName}/{pageSize}/{page}");
+
+
+            var responseContent = await response.Content.ReadFromJsonAsync<Response<PostPagedViewModel>>();
+
+            if (response.IsSuccessStatusCode)
+            {
+                var ListedPosts = responseContent.Data.ListedPosts;
+                var totalPage = responseContent.Data.totalPage;
+                return (ListedPosts, totalPage);
+            }
+
+            foreach (var item in responseContent.Errors)
+            {
+                _logger.LogError(item);
+            }
+            throw new Exception("İşlem gerçekleşirken bir hata meydana geldi.");
+        }
+
+        public async Task<bool> ExistsTitle(string Title)
+        {
+            var response = await _client.GetAsync($"Post/ExistsTitle/{Title}");
+
+
+            var responseContent = await response.Content.ReadFromJsonAsync<Response<bool>>();
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                return responseContent.Data;
+
+
             }
 
             foreach (var item in responseContent.Errors)

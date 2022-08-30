@@ -1,4 +1,11 @@
-﻿@model IndexViewModel
+﻿
+@{
+    ViewData["Title"] = "FilterByCategory";
+}
+
+<h1>FilterByCategory</h1>
+
+@model IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
     Layout = "_template";
@@ -29,7 +36,7 @@
 
                             @for (int i = 0; i < Model.Posts.Count; i++)
                             {
-                                <a asp-controller="Post" asp-action="PostView" asp-route-id="@Model.Posts[i].Id" >
+                                <a asp-controller="Post" asp-action="PostView" asp-route-id="@Model.Posts[i].Id">
                                     <div class="col">
                                         <div class="hero__inside__item hero__inside__item--wide set-bg"
                                          data-setbg="/pictures/@Model.Posts[i].ImageName">
