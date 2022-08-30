@@ -25,6 +25,8 @@ namespace ITalentBlog.Core.Repositories
 
         public void AddComment(Comment comment);
 
+        public void DeleteComment(int postId,int commentId);
+
         public (List<Post>,int) GetPostsWithPaged(int page,int pageSize);
         public (List<Post>,int) GetPostsWithPagedFilteredByCategory(int page,int pageSize,string categoryName);
 

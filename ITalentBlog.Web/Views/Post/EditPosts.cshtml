@@ -22,8 +22,9 @@
                     {
                         <tr>
                             <td>
-                                <div class="mb-3"><a asp-controller="Post" asp-action="DeletePost" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></div>
-                                <div><a asp-controller="Post" asp-action="UpdatePost" asp-route-id="@item.Id" class="btn btn-warning">Update</a></div>
+                                <div class="mb-3"><a asp-controller="Post" asp-action="DeletePost" asp-route-id="@item.Id" class="btn btn-danger">Delete Post</a></div>
+                                <div class="mb-3"><a asp-controller="Post" asp-action="DeleteComment" asp-route-postId="@item.Id" class="btn btn-danger">Delete Comment</a></div>
+                                <div><a asp-controller="Post" asp-action="UpdatePost" asp-route-id="@item.Id" class="btn btn-warning">Update Post</a></div>
                             </td>
                             <td>@item.Id</td>
                             <td>@item.Title</td>

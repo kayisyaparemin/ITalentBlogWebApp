@@ -88,6 +88,15 @@ namespace ITalentBlog.API.Controllers
             return new ObjectResult(response) { StatusCode = response.Status };
         }
 
+        [HttpDelete("[action]/{postId}/{commentId}")]
+        public IActionResult DeleteComment(int postId, int commentId)
+        {
+            var response = _postService.DeleteComment(postId, commentId);
+
+            return new ObjectResult(response) { StatusCode = response.Status };
+        }
+
+
 
     }
 }

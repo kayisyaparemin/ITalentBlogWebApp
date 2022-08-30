@@ -1,0 +1,37 @@
+﻿@model PostViewModel
+@{
+    ViewData["Title"] = "DeleteComment";
+}
+
+<h1>Delete Comment</h1>
+
+<section class="single-post spad">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Comments)
+                    {
+                        <tr>
+                            <td>
+                                <div class="mb-3"><a asp-controller="Post" asp-action="DeleteComment" asp-route-postId="@Model.Id" asp-route-commentId="@item.Id" class="btn btn-danger">Delete</a></div>
+                            </td>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Message</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

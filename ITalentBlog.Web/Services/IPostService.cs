@@ -22,7 +22,10 @@ namespace ITalentBlog.Web.Services
         Task<(List<PostViewModel>, int)> GetPostsWithPagedFilteredByCategory(int page, int pageSize, string categoryName);
 
         Task<bool> ExistsTitle(string Title);
-        
+
+        Task<bool> DeleteComment(int postId, int commentId);
+
+
 
 
 

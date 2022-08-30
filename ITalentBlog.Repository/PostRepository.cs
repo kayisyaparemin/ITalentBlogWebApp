@@ -78,5 +78,12 @@ namespace ITalentBlog.Repository
             var ListedPosts = posts.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
             return (ListedPosts, totalCount);
         }
+
+        public void DeleteComment(int postId, int commentId)
+        {
+            var entity = GetPostsWithCategoriesAndComments().FirstOrDefault(x => x.Id == postId);
+            var comment = entity.Comments.FirstOrDefault(x => x.Id == commentId);
+            entity.Comments.Remove(comment);
+        }
     }
 }

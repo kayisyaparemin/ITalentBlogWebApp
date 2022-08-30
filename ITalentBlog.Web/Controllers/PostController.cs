@@ -119,5 +119,19 @@ namespace ITalentBlog.Web.Controllers
             }
             return Json(true);
         }
+        public async Task<IActionResult> DeleteComment(int postId)
+        {
+            var post = await _postService.GetPostById(postId);
+
+            return View(post);
+        }
+        [Route("/Post/{postId}/Comment/{commentId}")]
+        public async Task<IActionResult> DeleteComment(int postId,int commentId)
+        {
+            var post = await _postService.DeleteComment(postId, commentId);
+
+            return RedirectToAction("AdminPanel","Home"); 
+        }
+
     }
 }

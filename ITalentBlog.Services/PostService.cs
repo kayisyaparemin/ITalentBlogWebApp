@@ -90,6 +90,19 @@ namespace ITalentBlog.Services
 
             return CustomResponse<CreateCommentDto>.Success(newCommentDto, 201);
         }
+        public CustomResponse<string> DeleteComment(int postId, int commentId)
+        {
+            if (!_postRepository.Any(postId))
+            {
+                return CustomResponse<string>.Fail($"Id'si {postId} olan ürün bulunamamıştır", 404);
+
+            }
+            _postRepository.DeleteComment(postId, commentId);
+            _unitOfWork.Commit();
+
+
+            return CustomResponse<string>.Success(String.Empty, 204);
+        }
 
         public CustomResponse<PostsPagedDto> GetPostsWithPaged(int page, int pageSize)
         {

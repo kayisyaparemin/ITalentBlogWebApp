@@ -142,5 +142,12 @@ namespace ITalentBlog.Web.Services
             }
             throw new Exception("İşlem gerçekleşirken bir hata meydana geldi.");
         }
+
+        public async Task<bool> DeleteComment(int postId,int commentId)
+        {
+            var response = await _client.DeleteAsync($"Post/DeleteComment/{postId}/{commentId}");
+
+            return response.IsSuccessStatusCode;
+        }
     }
 }

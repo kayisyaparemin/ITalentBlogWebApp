@@ -17,6 +17,7 @@ namespace ITalentBlog.Core.Services
         CustomResponse<PostUpdateDto> UpdatePost(PostUpdateDto request);
         CustomResponse<PostDto> GetPostById(int id);
         CustomResponse<CreateCommentDto> AddComment(CreateCommentDto request);
+        CustomResponse<string> DeleteComment(int postId, int commentId);
         CustomResponse<PostsPagedDto> GetPostsWithPaged(int page,int pageSize);
         CustomResponse<bool> ExistsTitle(string Title);
         CustomResponse<PostsPagedDto> GetPostsWithPagedFilteredByCategory(int page, int pageSize,string categoryName);
