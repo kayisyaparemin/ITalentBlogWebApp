@@ -98,7 +98,7 @@ namespace ITalentBlog.Web.Controllers
             var fileName = Guid.NewGuid().ToString();
             SaveImage(request.Image, fileName);
 
-            if(request.ImageName == null) { request.ImageName = $"{fileName}{Path.GetExtension(request.Image.FileName)}"; }
+            if(request.Image != null) { request.ImageName = $"{fileName}{Path.GetExtension(request.Image.FileName)}"; }
             
             await _postService.UpdatePost(request);
             return RedirectToAction("Index", "Home");
