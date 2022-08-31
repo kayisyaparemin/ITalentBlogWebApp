@@ -141,7 +141,7 @@ namespace ITalentBlog.Web.Controllers
                 return RedirectToAction("EditPosts", "Post");
             }
 
-            return RedirectToAction("DeleteComment","Post"); 
+            return RedirectToAction("EditPosts", "Post");
         }
 
     }
