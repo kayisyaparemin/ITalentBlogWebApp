@@ -41,9 +41,11 @@ namespace ITalentBlog.Web.Controllers
 
         public async Task<IActionResult> CreatePost()
         {
+           
             var categories = await _categoryService.GetCategories();
-            ViewBag.selectList = new SelectList(categories, "Id", "Name");
-            return View();
+                ViewBag.selectList = new SelectList(categories, "Id", "Name");
+                return View();
+           
         }
 
         [HttpPost]
@@ -78,10 +80,16 @@ namespace ITalentBlog.Web.Controllers
             }
         }
 
-        public async Task<IActionResult> DeletePost(int id)
+        public async Task<IActionResult> DeletePost(string confirm_value,int id)
         {
-            await _postService.DeletePost(id);
-            return RedirectToAction("Index", "Home");
+            if (confirm_value == "Yes")
+            {
+                await _postService.DeletePost(id);
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("EditPosts", "Post");
+            
         }
 
         public async Task<IActionResult> UpdatePost(int id)

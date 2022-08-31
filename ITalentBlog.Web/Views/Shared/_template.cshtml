@@ -68,8 +68,6 @@
             <script src="/js/jquery.slicknav.js"></script>
             <script src="/js/owl.carousel.min.js"></script>
             <script src="/js/main.js"></script>
-
-
         </main>
     </div>
 
@@ -82,6 +80,18 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        function Confirm() {
+            if (confirm("Are you sure you want to Delete it?")) {
+                $('input[name=confirm_value]').val('Yes');
+                $("#ConfirmForm").submit();
+            }
+            else {
+                $('input[name=confirm_value]').val('No');
+                $("#ConfirmForm").submit();
+            }
+        }
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
