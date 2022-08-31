@@ -39,7 +39,7 @@ namespace ITalentBlog.Web.Controllers
             return RedirectToAction($"PostView", new { id = request.Id });
         }
 
-        public async Task<IActionResult> CreatePost()
+        public async Task<IActionResult> CreatePost(string confirm_value)
         {
            
             var categories = await _categoryService.GetCategories();
@@ -79,12 +79,11 @@ namespace ITalentBlog.Web.Controllers
 
             }
         }
-
         public async Task<IActionResult> DeletePost(string confirm_value,int id)
         {
             if (confirm_value == "Yes")
             {
-                await _postService.DeletePost(id);
+                var result = await _postService.DeletePost(id);
                 return RedirectToAction("Index", "Home");
             }
 
