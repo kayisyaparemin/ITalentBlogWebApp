@@ -87,8 +87,7 @@ namespace ITalentBlog.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return RedirectToAction("EditPosts", "Post");
-            
+            return RedirectToAction("EditPosts", "Post");           
         }
 
         public async Task<IActionResult> UpdatePost(int id)
@@ -132,12 +131,17 @@ namespace ITalentBlog.Web.Controllers
 
             return View(post);
         }
-        [Route("/Post/{postId}/Comment/{commentId}")]
-        public async Task<IActionResult> DeleteComment(int postId,int commentId)
+        [HttpPost]
+        public async Task<IActionResult> DeleteComment(int postId,int commentId,string confirm_value)
         {
-            var post = await _postService.DeleteComment(postId, commentId);
 
-            return RedirectToAction("AdminPanel","Home"); 
+            if (confirm_value == "Yes")
+            {
+                var post = await _postService.DeleteComment(postId, commentId);
+                return RedirectToAction("EditPosts", "Post");
+            }
+
+            return RedirectToAction("DeleteComment","Post"); 
         }
 
     }

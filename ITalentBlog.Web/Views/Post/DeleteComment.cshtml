@@ -1,6 +1,7 @@
 ﻿@model PostViewModel
 @{
     ViewData["Title"] = "DeleteComment";
+    Layout = "_template";
 }
 
 <h1>Delete Comment</h1>
@@ -22,7 +23,14 @@
                     {
                         <tr>
                             <td>
-                                <div class="mb-3"><a asp-controller="Post" asp-action="DeleteComment" asp-route-postId="@Model.Id" asp-route-commentId="@item.Id" class="btn btn-danger">Delete</a></div>
+                                <div class="mb-3">
+                                    <form id="ConfirmForm" method="Post" asp-controller="Post" asp-action="DeleteComment">
+                                        <input type="hidden" name="confirm_value" value="" />
+                                        <input type="hidden" name="postId" value="@Model.Id" />
+                                        <input type="hidden" name="commentId" value="@item.Id" />
+                                        <a onclick="Confirm('Comment')" class="btn btn-danger text-white">Delete Comment</a>
+                                    </form>
+                                    </div>
                             </td>
                             <td>@item.Id</td>
                             <td>@item.Name</td>

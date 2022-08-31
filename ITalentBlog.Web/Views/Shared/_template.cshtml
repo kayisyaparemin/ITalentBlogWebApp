@@ -81,16 +81,47 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
-        function Confirm() {
-            if (confirm("Are you sure you want to Delete it?")) {
-                $('input[name=confirm_value]').val('Yes');
-                $("#ConfirmForm").submit();
-            }
-            else {
-                $('input[name=confirm_value]').val('No');
-                $("#ConfirmForm").submit();
-            }
+        function Confirm(confirmWhat) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('input[name=confirm_value]').val('Yes');
+                    $("#ConfirmForm").submit();
+                    swalWithBootstrapButtons.fire(
+                        'Deleted!',
+                        `${confirmWhat}has been deleted.`,
+                        'success'
+                    )
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    $('input[name=confirm_value]').val('No');
+                    $("#ConfirmForm").submit();
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        `${confirmWhat} is safe :)`,
+                        'error'
+                    )
+                }
+            })
         }
+        
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

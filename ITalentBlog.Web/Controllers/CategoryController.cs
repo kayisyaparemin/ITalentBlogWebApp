@@ -32,10 +32,15 @@ namespace ITalentBlog.Web.Controllers
             return RedirectToAction("AdminPanel", "Home");
         }
 
-        public IActionResult DeleteCategory(int id)
+        public IActionResult DeleteCategory(int id,string confirm_value)
         {
-            _categoryService.DeleteCategory(id);
-            return RedirectToAction("AdminPanel", "Home");
+            if (confirm_value == "Yes")
+            {
+                _categoryService.DeleteCategory(id);
+                return RedirectToAction("AdminPanel", "Home");
+            }
+
+            return RedirectToAction("EditCategories", "Category");
         }
         public async Task<IActionResult> UpdateCategory(int id)
         {

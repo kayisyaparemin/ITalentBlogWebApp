@@ -27,12 +27,8 @@
                                     <form id="ConfirmForm" method="get" asp-controller="Post" asp-action="DeletePost">
                                         <input type="hidden" name="confirm_value" value="" />
                                         <input type="hidden" name="id" value="@item.Id" />
-                                        <a onclick="Confirm()" class="btn btn-danger text-white">Delete Post</a>
-                                    </form>@*
-                                    <form id="ConfirmForm" method="get" asp-controller="Post" asp-action="DeletePost">
-                                        <input type="hidden" name="confirm_value" value="" />
-                                        <a onclick="Confirm()" asp-route-id="@item.Id" class="btn btn-danger">Delete Post</a>
-                                    </form> *@                                 
+                                        <a onclick="Confirm('Post')" class="btn btn-danger text-white">Delete Post</a>
+                                    </form>                               
                                     </div>
                                 <div class="mb-3"><a asp-controller="Post" asp-action="DeleteComment" asp-route-postId="@item.Id" class="btn btn-danger">Delete Comment</a></div>
                                 <div><a asp-controller="Post" asp-action="UpdatePost" asp-route-id="@item.Id" class="btn btn-warning">Update Post</a></div>
