@@ -14,6 +14,7 @@ namespace ITalentBlog.Web.Models
         public int CategoryId { get; set; }
         public string CreatedDate { get; set; }
         [Required]
+        [AllowedExtensions(new string[] { ".jpg", ".png",".jpeg" })]
         public IFormFile Image { get; set; }
     }
 }
